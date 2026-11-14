@@ -32,6 +32,11 @@ export function SiteFooter() {
 						github.com/RJHaytree
 					</Anchor>
 				</TitleBlock.Row>
+				<TitleBlock.Row label="LinkedIn">
+					<Anchor href="https://www.linkedin.com/in/ryan-haytree-59a645168/">
+						linkedin.com/in/ryan-haytree
+					</Anchor>
+				</TitleBlock.Row>
 				<TitleBlock.Row label="Edition">
 					<span className="tabular-nums">2026</span>
 				</TitleBlock.Row>

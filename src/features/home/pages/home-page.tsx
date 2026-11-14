@@ -63,10 +63,6 @@ export function HomePage({
 					<footer id="contact" className="mt-10 lg:mt-0">
 						<h2 className="sr-only">Title block and contact</h2>
 						<TitleBlock.Root className="w-full max-w-[26rem]">
-							<TitleBlock.Row label="Drawing">
-								<span className="tabular-nums">RH-01</span>{' '}
-								<span className="text-muted">Home</span>
-							</TitleBlock.Row>
 							<TitleBlock.Row label="Email">
 								<Anchor href="mailto:rjhaytree@gmail.com">
 									rjhaytree@gmail.com
@@ -75,6 +71,11 @@ export function HomePage({
 							<TitleBlock.Row label="GitHub">
 								<Anchor href="https://github.com/RJHaytree">
 									github.com/RJHaytree
+								</Anchor>
+							</TitleBlock.Row>
+							<TitleBlock.Row label="LinkedIn">
+								<Anchor href="https://www.linkedin.com/in/ryan-haytree-59a645168/">
+									linkedin.com/in/ryan-haytree
 								</Anchor>
 							</TitleBlock.Row>
 						</TitleBlock.Root>
