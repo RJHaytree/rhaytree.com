@@ -7,17 +7,17 @@ export const Route = createFileRoute('/work/$slug')({
 	loader: async ({ params }) => {
 		const study = await getCaseStudy(params.slug)
 		if (!study) throw notFound()
-		return study
+		return { study, sheet: { number: study.reference, title: study.title } }
 	},
 	head: ({ loaderData }) => ({
 		meta: loaderData
 			? [
-					{ title: `${loaderData.title} | Ryan Haytree` },
-					{ name: 'description', content: loaderData.summary },
+					{ title: `${loaderData.study.title} | Ryan Haytree` },
+					{ name: 'description', content: loaderData.study.summary },
 				]
 			: [],
 	}),
 	component: function CaseStudyRoute() {
-		return <CaseStudyPage study={Route.useLoaderData()} />
+		return <CaseStudyPage study={Route.useLoaderData().study} />
 	},
 })

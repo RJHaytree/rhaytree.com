@@ -18,7 +18,7 @@ A personal professional site at rhaytree.com that replaces a seven-year-old GitH
 
 ## Positioning
 
-Ryan sits between senior software engineering and platform engineering. He writes code, but his work is defining project architecture, planning large cloud projects that span many systems, building internal tooling that provisions AWS infrastructure (Lightsail, EC2) and defines deployment flows for other teams, writing infrastructure as code with Terraform, auditing infrastructure for vulnerabilities, and doing code reviews. Working title direction: Lead Platform & Systems Engineer. Not final.
+Ryan sits between senior software engineering and platform engineering. He writes code, but his work is defining project architecture, planning large cloud projects that span many systems, building internal platform tooling that other teams use, writing infrastructure as code with Terraform, auditing infrastructure for vulnerabilities, and doing code reviews. Working title direction: Lead Platform & Systems Engineer. Not final.
 
 ## Operating Context
 
@@ -34,9 +34,15 @@ Ryan sits between senior software engineering and platform engineering. He write
 - The site's own repo and infrastructure are intended to become a public showcase ("how this site is built"). Undecided: whether the repo goes public and when.
 - Open decisions: final professional title, whether to add a contact form or email only, whether a writing/blog section ships at launch.
 
+## Brand Commitments
+
+- Dark presentation with a near-black, neutral palette in the spirit of Vercel and Expo (owner's stated preference, 2026-11-14). Colour is not a carrier of identity; contrast and structure are.
+- Tone: not flashy, not corporate, not "hacker" (terminal green, neon, monospace-everything), and not so sparse it reads unfinished.
+
 ## Evidence on Hand
 
-- Anonymised case studies of NDA client work: available or obtainable. Not yet written. Candidates include the internal AWS provisioning and deployment tool, a multi-system cloud project, an infrastructure security audit, Terraform standardisation and engineering standards and code review.
+- Anonymised case studies of NDA client work: available or obtainable. Not yet written. Candidate topics are kept general (for example a multi-system cloud project, an infrastructure security audit, Terraform standardisation, engineering standards and code review).
+- NDA sensitivity: specific internal tools Ryan has built (and how they work) must not be depicted, diagrammed or described in identifiable detail anywhere on the site, including illustrations, fixtures and placeholder copy. Illustrations use generic reference architectures, captioned as such.
 - Absent: no public open-source repos to feature, no testimonials, no press, no cleared metrics. Do not fabricate any of these. Use placeholders clearly marked as such until real content exists.
 
 ## Product Principles
@@ -46,3 +52,8 @@ Ryan sits between senior software engineering and platform engineering. He write
 3. Quiet confidence: a professional presence for someone not currently looking, so no urgency, no sales funnel and no availability prompts.
 4. Built to grow: structure should let contracting services and writing slot in later without a redesign.
 5. The site is itself evidence: its build and infrastructure should hold up to an engineer's scrutiny.
+
+## Accessibility & Inclusion
+
+- WCAG 2.2 AA as the floor: keyboard access, visible focus, reduced-motion support, semantic structure.
+- Never rely on hue alone. The owner is heavily colourblind, and so are some visitors: meaning (current page, links, states, categories) must be carried by lightness contrast, weight, underline, shape or text. No red/green distinctions.

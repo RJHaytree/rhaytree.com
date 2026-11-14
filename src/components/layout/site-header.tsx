@@ -2,28 +2,43 @@ import { Link } from '@tanstack/react-router'
 
 import { Nav } from '../ui/nav'
 
+/** The sheet register: the site's navigation, numbered like a drawing set. */
 export function SiteHeader() {
 	return (
-		<header className="border-b border-neutral-200">
+		<header className="border-b border-rule bg-sheet">
 			<a
 				href="#main"
-				className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-white focus:px-3 focus:py-2 focus:outline-2"
+				className="sr-only focus:not-sr-only focus:absolute focus:top-6 focus:left-6 focus:z-10 focus:bg-bright focus:px-3 focus:py-2 focus:text-ground"
 			>
 				Skip to content
 			</a>
-			<div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-4">
-				<Link to="/" className="font-semibold">
+			<div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 px-5 py-4 sm:px-8 lg:px-10">
+				<Link
+					to="/"
+					className="font-semibold text-bright no-underline [font-stretch:112%]"
+				>
 					Ryan Haytree
 				</Link>
-				<Nav.Root label="Primary">
+				<Nav.Root label="Sheets">
 					<Nav.Item>
-						<Nav.Link to="/work">Work</Nav.Link>
+						<Nav.Link to="/" activeOptions={{ exact: true }}>
+							<Nav.Number>01</Nav.Number>Home
+						</Nav.Link>
 					</Nav.Item>
 					<Nav.Item>
-						<Nav.Link to="/experience">Experience</Nav.Link>
+						<Nav.Link to="/work">
+							<Nav.Number>02</Nav.Number>Work
+						</Nav.Link>
 					</Nav.Item>
 					<Nav.Item>
-						<Nav.Anchor href="#contact">Contact</Nav.Anchor>
+						<Nav.Link to="/experience">
+							<Nav.Number>03</Nav.Number>Experience
+						</Nav.Link>
+					</Nav.Item>
+					<Nav.Item>
+						<Nav.Anchor href="#contact">
+							<Nav.Number>04</Nav.Number>Contact
+						</Nav.Anchor>
 					</Nav.Item>
 				</Nav.Root>
 			</div>

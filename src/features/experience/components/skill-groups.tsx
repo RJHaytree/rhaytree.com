@@ -1,12 +1,18 @@
 import type { SkillGroup } from '../types/experience'
 
+/** Skills as a schedule: area in the margin column, skills beside it. */
 export function SkillGroups({ groups }: { groups: Array<SkillGroup> }) {
 	return (
-		<dl className="grid gap-x-6 gap-y-3 sm:grid-cols-[10rem_1fr]">
+		<dl className="m-0 border-t border-rule">
 			{groups.map((group) => (
-				<div key={group.area} className="contents">
-					<dt className="font-medium">{group.area}</dt>
-					<dd>{group.skills.join(', ')}</dd>
+				<div
+					key={group.area}
+					className="grid gap-x-10 gap-y-1 border-b border-rule py-4 md:grid-cols-[12rem_minmax(0,1fr)]"
+				>
+					<dt className="font-medium text-bright">{group.area}</dt>
+					<dd className="m-0 text-muted">
+						{group.skills.join(', ')}
+					</dd>
 				</div>
 			))}
 		</dl>

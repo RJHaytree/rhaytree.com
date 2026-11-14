@@ -4,13 +4,15 @@ import { Page } from './page'
 export function NotFoundPage() {
 	return (
 		<Page.Root>
-			<Page.Title>Page not found</Page.Title>
-			<p className="mt-4 max-w-prose">
-				That address doesn't match a page on this site. It may have
-				moved, or the link may have a typo.
-			</p>
-			<p className="mt-4">
-				<TextLink to="/">Go to the home page</TextLink>
+			<Page.Header>
+				<Page.Title>Sheet not found</Page.Title>
+				<Page.Lead>
+					No drawing exists at this address. It may have moved, or the
+					link may have a typo.
+				</Page.Lead>
+			</Page.Header>
+			<p className="mt-8">
+				<TextLink to="/">Go to the home sheet</TextLink>
 			</p>
 		</Page.Root>
 	)

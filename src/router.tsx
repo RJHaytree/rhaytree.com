@@ -12,6 +12,7 @@ export function getRouter() {
 		scrollRestoration: true,
 		defaultPreload: 'intent',
 		defaultPreloadStaleTime: 0,
+		defaultViewTransition: true,
 	})
 
 	setupRouterSsrQueryIntegration({ router, queryClient: context.queryClient })
@@ -22,5 +23,10 @@ export function getRouter() {
 declare module '@tanstack/react-router' {
 	interface Register {
 		router: ReturnType<typeof getRouter>
+	}
+
+	interface StaticDataRouteOption {
+		/** Drawing identity shown in the sheet's title block. */
+		sheet?: { number: string; title: string }
 	}
 }

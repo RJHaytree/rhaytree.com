@@ -10,7 +10,8 @@
 			"**",
 			"!src/routeTree.gen.ts",
 			"!**/package-lock.json",
-			"!**/*.md"
+			"!**/*.md",
+			"!.impeccable"
 		]
 	},
 	"formatter": {

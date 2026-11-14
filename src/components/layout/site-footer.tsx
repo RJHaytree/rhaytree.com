@@ -1,25 +1,37 @@
 import { Anchor } from '../ui/text-link'
+import { TitleBlock } from '../ui/title-block'
+import { useCurrentSheet } from './use-current-sheet'
 
+/**
+ * The title block at the foot of every sheet: which drawing this is, and how
+ * to reach its author. It doubles as the site's contact section.
+ */
 export function SiteFooter() {
+	const sheet = useCurrentSheet()
+
 	return (
-		<footer id="contact" className="mt-16 border-t border-neutral-200">
-			<div className="mx-auto max-w-5xl px-4 py-10">
-				<h2 className="text-lg font-semibold">Contact</h2>
-				<dl className="mt-4 grid gap-2 sm:grid-cols-[6rem_1fr]">
-					<dt className="text-neutral-600">Email</dt>
-					<dd>
-						<Anchor href="mailto:rjhaytree@gmail.com">
-							rjhaytree@gmail.com
-						</Anchor>
-					</dd>
-					<dt className="text-neutral-600">GitHub</dt>
-					<dd>
-						<Anchor href="https://github.com/RJHaytree">
-							github.com/RJHaytree
-						</Anchor>
-					</dd>
-				</dl>
-			</div>
+		<footer id="contact" className="mt-24 flex justify-end">
+			<h2 className="sr-only">Title block and contact</h2>
+			<TitleBlock.Root className="w-full border-r-0 border-b-0 sm:max-w-[34rem]">
+				<TitleBlock.Row label="Drawing">
+					<span className="tabular-nums">{sheet.number}</span>{' '}
+					<span className="text-muted">{sheet.title}</span>
+				</TitleBlock.Row>
+				<TitleBlock.Row label="Author">Ryan Haytree</TitleBlock.Row>
+				<TitleBlock.Row label="Email">
+					<Anchor href="mailto:rjhaytree@gmail.com">
+						rjhaytree@gmail.com
+					</Anchor>
+				</TitleBlock.Row>
+				<TitleBlock.Row label="GitHub">
+					<Anchor href="https://github.com/RJHaytree">
+						github.com/RJHaytree
+					</Anchor>
+				</TitleBlock.Row>
+				<TitleBlock.Row label="Edition">
+					<span className="tabular-nums">2026</span>
+				</TitleBlock.Row>
+			</TitleBlock.Root>
 		</footer>
 	)
 }

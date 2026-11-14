@@ -11,7 +11,10 @@ export function Anchor({
 	return (
 		<a
 			ref={ref}
-			className={cn('underline underline-offset-2', className)}
+			className={cn(
+				'text-bright underline decoration-rule-strong transition-colors duration-150 hover:decoration-bright',
+				className,
+			)}
 			{...props}
 		/>
 	)

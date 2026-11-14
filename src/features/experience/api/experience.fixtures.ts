@@ -13,11 +13,11 @@ export const experienceFixture: z.input<typeof experienceSchema> = {
 			organisation: '[Fixture] Example Software Ltd',
 			start: '2022-03',
 			summary:
-				'Leads architecture and platform work across client projects: internal provisioning tooling, multi-system cloud planning and infrastructure security.',
+				'Leads architecture and platform work: system design, cloud planning, shared tooling and infrastructure security.',
 			highlights: [
-				'Built an internal tool that provisions AWS Lightsail and EC2 environments and defines deployment flows.',
-				'Plans large cloud projects spanning several integrated systems.',
-				'Writes and maintains Terraform for client infrastructure, and audits it for vulnerabilities.',
+				'Defines architecture for projects spanning several integrated systems.',
+				'Builds shared tooling that other teams use to ship and run services.',
+				'Writes infrastructure as code and audits it for vulnerabilities.',
 				'Reviews code across the team.',
 			],
 		},
@@ -37,7 +37,7 @@ export const experienceFixture: z.input<typeof experienceSchema> = {
 	skillGroups: [
 		{
 			area: 'Cloud',
-			skills: ['AWS (EC2, Lightsail, IAM)', 'Cloudflare Workers'],
+			skills: ['AWS', 'Cloudflare Workers'],
 		},
 		{ area: 'Infrastructure', skills: ['Terraform', 'Docker', 'CI/CD'] },
 		{ area: 'Languages', skills: ['TypeScript', 'JavaScript', 'SQL'] },

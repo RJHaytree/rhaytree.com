@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T00:00:00Z",
+  "title": "Design System: Ryan Haytree",
+  "extensions": {
+    "colorMeta": {
+      "signal": { "role": "primary", "displayName": "Drafting Highlighter", "canonical": "#ffd23f", "tonalRamp": ["#2e2306", "#4f3d0c", "#735a14", "#9a7a1d", "#c49c27", "#ffd23f", "#ffe17a", "#fff0bf"] },
+      "ground": { "role": "neutral", "displayName": "Black Ground", "canonical": "#000000", "tonalRamp": ["#000000", "#0a0a0a", "#141414", "#2e2e2e", "#4a4a4a", "#6b6b6b", "#a1a1a1", "#ededed"] },
+      "sheet": { "role": "neutral", "displayName": "Sheet", "canonical": "#0a0a0a", "tonalRamp": ["#000000", "#0a0a0a", "#141414", "#2e2e2e", "#4a4a4a", "#6b6b6b", "#a1a1a1", "#ededed"] },
+      "grid": { "role": "neutral", "displayName": "Grid Line", "canonical": "#141414", "tonalRamp": ["#000000", "#0a0a0a", "#141414", "#2e2e2e", "#4a4a4a", "#6b6b6b", "#a1a1a1", "#ededed"] },
+      "rule": { "role": "neutral", "displayName": "Hairline Rule", "canonical": "#2e2e2e", "tonalRamp": ["#000000", "#0a0a0a", "#141414", "#2e2e2e", "#4a4a4a", "#6b6b6b", "#a1a1a1", "#ededed"] },
+      "rule-strong": { "role": "neutral", "displayName": "Strong Rule", "canonical": "#4a4a4a", "tonalRamp": ["#000000", "#0a0a0a", "#141414", "#2e2e2e", "#4a4a4a", "#6b6b6b", "#a1a1a1", "#ededed"] },
+      "drawing-stroke": { "role": "neutral", "displayName": "Drawing Stroke", "canonical": "#6b6b6b", "tonalRamp": ["#000000", "#0a0a0a", "#141414", "#2e2e2e", "#4a4a4a", "#6b6b6b", "#a1a1a1", "#ededed"] },
+      "muted": { "role": "neutral", "displayName": "Muted Graphite", "canonical": "#a1a1a1", "tonalRamp": ["#000000", "#0a0a0a", "#141414", "#2e2e2e", "#4a4a4a", "#6b6b6b", "#a1a1a1", "#ededed"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#ededed", "tonalRamp": ["#000000", "#0a0a0a", "#141414", "#2e2e2e", "#4a4a4a", "#6b6b6b", "#a1a1a1", "#ededed"] },
+      "bright": { "role": "neutral", "displayName": "White", "canonical": "#ffffff", "tonalRamp": ["#0a0a0a", "#141414", "#2e2e2e", "#4a4a4a", "#6b6b6b", "#a1a1a1", "#ededed", "#ffffff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name on the home sheet only; lettered from wdth 62 to 115 on load." },
+      "headline": { "displayName": "Headline", "purpose": "Each sheet's single h1, set wide." },
+      "title": { "displayName": "Title", "purpose": "Section titles." },
+      "lead": { "displayName": "Lead", "purpose": "Positioning and page leads in muted graphite." },
+      "body": { "displayName": "Body", "purpose": "Prose, capped at 60 to 65ch." },
+      "label": { "displayName": "Label", "purpose": "Title block labels, references, dates and captions at semi-condensed width with tabular figures." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-draft", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The single easing for every transition and drawing animation." },
+      { "name": "state-color", "value": "150ms (links, register) / 200ms (key, drawing parts)", "purpose": "Lightness, stroke and opacity changes on hover, focus and trace." },
+      { "name": "leader-line", "value": "300ms scaleX", "purpose": "Signal leader line drawn across a work-register row on hover or focus." },
+      { "name": "letter-wide", "value": "1100ms", "purpose": "The name lettered narrow to wide on the width axis on load." },
+      { "name": "draw-stroke", "value": "900ms, staggered by --draw-delay", "purpose": "System drawing strokes drawn via stroke-dashoffset (pathLength 1)." },
+      { "name": "draw-dimension", "value": "900ms on load; scroll-linked entry 0 to 140px", "purpose": "Dimension lines draw on load; section rules draw as their section scrolls in." },
+      { "name": "sheet-swap", "value": "220ms view-transition crossfade", "purpose": "Route changes between sheets." },
+      { "name": "reduced-motion", "value": "prefers-reduced-motion: no-preference gate", "purpose": "Every animation above is disabled under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Sheet Register",
+      "kind": "nav",
+      "refersTo": "register-link",
+      "description": "Numbered navigation across the sheet head; current and hovered entries turn white and underlined.",
+      "html": "<header class=\"ds-register\"><a class=\"ds-register-name\" href=\"#\">Ryan Haytree</a><nav aria-label=\"Sheets\"><ul class=\"ds-register-list\"><li><a class=\"ds-register-link\" aria-current=\"page\" href=\"#\"><span class=\"ds-register-num\">01</span>Home</a></li><li><a class=\"ds-register-link\" href=\"#\"><span class=\"ds-register-num\">02</span>Work</a></li><li><a class=\"ds-register-link\" href=\"#\"><span class=\"ds-register-num\">03</span>Experience</a></li><li><a class=\"ds-register-link\" href=\"#\"><span class=\"ds-register-num\">04</span>Contact</a></li></ul></nav></header>",
+      "css": ".ds-register { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px; padding: 16px 32px; background: var(--color-sheet, #0a0a0a); border-bottom: 1px solid var(--color-rule, #2e2e2e); font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; } .ds-register-name { color: var(--color-bright, #fff); font-weight: 600; font-stretch: 112%; text-decoration: none; } .ds-register-list { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0; padding: 0; list-style: none; } .ds-register-link { color: var(--color-muted, #a1a1a1); text-decoration: none; text-underline-offset: 0.22em; text-decoration-thickness: 1px; transition: color 150ms; } .ds-register-link:hover, .ds-register-link[aria-current=page] { color: var(--color-bright, #fff); text-decoration: underline; } .ds-register-link:focus-visible { outline: 2px solid var(--color-bright, #fff); outline-offset: 3px; border-radius: 1px; } .ds-register-num { margin-right: 6px; font-variant-numeric: tabular-nums; font-stretch: 87.5%; }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Inline link: white text, strong-rule underline that brightens on hover.",
+      "html": "<p class=\"ds-prose\">Case studies are being written up. <a class=\"ds-link\" href=\"#\">See my experience</a> in the meantime.</p>",
+      "css": ".ds-prose { color: var(--color-muted, #a1a1a1); font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; line-height: 1.6; } .ds-link { color: var(--color-bright, #fff); text-decoration: underline; text-decoration-color: var(--color-rule-strong, #4a4a4a); text-decoration-thickness: 1px; text-underline-offset: 0.22em; transition: text-decoration-color 150ms; } .ds-link:hover { text-decoration-color: var(--color-bright, #fff); } .ds-link:focus-visible { outline: 2px solid var(--color-bright, #fff); outline-offset: 3px; border-radius: 1px; }"
+    },
+    {
+      "name": "Title Block",
+      "kind": "card",
+      "refersTo": "title-block",
+      "description": "Bordered schedule of label and value rows; the foot of every sheet and its contact.",
+      "html": "<dl class=\"ds-title-block\"><div class=\"ds-tb-row\"><dt>Drawing</dt><dd><span class=\"ds-num\">RH-01</span> <span class=\"ds-muted\">Home</span></dd></div><div class=\"ds-tb-row\"><dt>Author</dt><dd>Ryan Haytree</dd></div><div class=\"ds-tb-row\"><dt>Email</dt><dd><a class=\"ds-tb-link\" href=\"#\">name@example.com</a></dd></div><div class=\"ds-tb-row\"><dt>Edition</dt><dd><span class=\"ds-num\">2026</span></dd></div></dl>",
+      "css": ".ds-title-block { margin: 0; max-width: 34rem; border: 1px solid var(--color-rule-strong, #4a4a4a); background: var(--color-sheet, #0a0a0a); color: var(--color-ink, #ededed); font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 0.9375rem; } .ds-tb-row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); column-gap: 16px; padding: 10px 16px; border-bottom: 1px solid var(--color-rule, #2e2e2e); } .ds-tb-row:last-child { border-bottom: 0; } .ds-tb-row dt { color: var(--color-muted, #a1a1a1); font-stretch: 87.5%; } .ds-tb-row dd { margin: 0; } .ds-num { font-variant-numeric: tabular-nums; } .ds-muted { color: var(--color-muted, #a1a1a1); } .ds-tb-link { color: var(--color-bright, #fff); text-decoration: underline; text-decoration-color: var(--color-rule-strong, #4a4a4a); text-underline-offset: 0.22em; } .ds-tb-link:hover { text-decoration-color: var(--color-bright, #fff); } .ds-tb-link:focus-visible { outline: 2px solid var(--color-bright, #fff); outline-offset: 3px; }"
+    },
+    {
+      "name": "Work Register Row",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Case study row: tabular reference in the margin; a signal leader line draws on hover or focus.",
+      "html": "<ul class=\"ds-work\"><li class=\"ds-work-row\"><span class=\"ds-work-ref\"><span class=\"ds-work-num\">CS-01</span><span class=\"ds-work-leader\"></span></span><div><a class=\"ds-work-title\" href=\"#\">Placeholder case study</a><p class=\"ds-work-summary\">A short, NDA-safe summary of the pattern and decision.</p></div></li></ul>",
+      "css": ".ds-work { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-rule, #2e2e2e); font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-work-row { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); column-gap: 32px; padding: 20px 0; border-bottom: 1px solid var(--color-rule, #2e2e2e); } .ds-work-ref { display: flex; align-items: center; gap: 12px; height: 28px; } .ds-work-num { color: var(--color-muted, #a1a1a1); font-variant-numeric: tabular-nums; font-stretch: 87.5%; transition: color 200ms; } .ds-work-leader { flex: 1; height: 2px; margin-right: -24px; background: var(--color-signal, #ffd23f); transform: scaleX(0); transform-origin: left; transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-work-row:hover .ds-work-num, .ds-work-row:focus-within .ds-work-num { color: var(--color-bright, #fff); } .ds-work-row:hover .ds-work-leader, .ds-work-row:focus-within .ds-work-leader { transform: scaleX(1); } .ds-work-title { color: var(--color-bright, #fff); font-size: 1.125rem; font-weight: 500; text-decoration: underline; text-decoration-color: var(--color-rule-strong, #4a4a4a); text-underline-offset: 0.22em; } .ds-work-title:hover { text-decoration-color: var(--color-bright, #fff); } .ds-work-title:focus-visible { outline: 2px solid var(--color-bright, #fff); outline-offset: 3px; } .ds-work-summary { margin: 6px 0 0; max-width: 65ch; color: var(--color-muted, #a1a1a1); } @media (prefers-reduced-motion: reduce) { .ds-work-leader { transition: none; } }"
+    },
+    {
+      "name": "Schedule",
+      "kind": "custom",
+      "refersTo": "title-block-label",
+      "description": "Margin-column label with body beside it, hairline rows; used for notes, roles and skills.",
+      "html": "<dl class=\"ds-schedule\"><div class=\"ds-schedule-row\"><dt>Cloud</dt><dd>Placeholder skills, comma separated</dd></div><div class=\"ds-schedule-row\"><dt>Infrastructure as code</dt><dd>Terraform</dd></div></dl>",
+      "css": ".ds-schedule { margin: 0; border-top: 1px solid var(--color-rule, #2e2e2e); font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; } .ds-schedule-row { display: grid; grid-template-columns: 12rem minmax(0, 1fr); column-gap: 40px; padding: 16px 0; border-bottom: 1px solid var(--color-rule, #2e2e2e); } .ds-schedule-row dt { color: var(--color-bright, #fff); font-weight: 500; } .ds-schedule-row dd { margin: 0; color: var(--color-muted, #a1a1a1); }"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Square hairline chip for a case study's topics; static.",
+      "html": "<ul class=\"ds-tags\"><li class=\"ds-tag\">Architecture</li><li class=\"ds-tag\">Terraform</li><li class=\"ds-tag\">Security</li></ul>",
+      "css": ".ds-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-tag { border: 1px solid var(--color-rule, #2e2e2e); padding: 2px 10px; color: var(--color-muted, #a1a1a1); font-size: 0.9375rem; }"
+    },
+    {
+      "name": "Drawing Key Entry",
+      "kind": "button",
+      "refersTo": "key-entry",
+      "description": "Practice map key button; active state turns signal with a 2px underline (never hue alone).",
+      "html": "<dl class=\"ds-key\"><div class=\"ds-key-row\"><dt><button class=\"ds-key-btn\" type=\"button\" aria-pressed=\"false\">Architecture</button></dt><dd>Defining how systems fit together.</dd></div><div class=\"ds-key-row\"><dt><button class=\"ds-key-btn\" type=\"button\" aria-pressed=\"true\">Infrastructure as code</button></dt><dd>Terraform for repeatable environments.</dd></div></dl>",
+      "css": ".ds-key { margin: 0; border-top: 1px solid var(--color-rule, #2e2e2e); font-family: 'Archivo Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-key-row { display: grid; grid-template-columns: 11rem minmax(0, 1fr); column-gap: 24px; padding: 10px 0; border-bottom: 1px solid var(--color-rule, #2e2e2e); } .ds-key-row dd { margin: 0; color: var(--color-muted, #a1a1a1); font-size: 0.9375rem; } .ds-key-btn { background: none; border: 0; padding: 0; cursor: pointer; text-align: left; font: inherit; font-weight: 500; color: var(--color-ink, #ededed); text-underline-offset: 4px; transition: color 200ms; } .ds-key-btn:hover { color: var(--color-bright, #fff); } .ds-key-btn[aria-pressed=true], .ds-key-btn:focus-visible { color: var(--color-signal, #ffd23f); text-decoration: underline; text-decoration-thickness: 2px; } .ds-key-btn:focus-visible { outline: 2px solid var(--color-bright, #fff); outline-offset: 3px; border-radius: 1px; }"
+    },
+    {
+      "name": "Dimension Line",
+      "kind": "custom",
+      "refersTo": "sheet",
+      "description": "Decorative strong-rule line with end ticks measuring the heading block's width.",
+      "html": "<div class=\"ds-dim\" aria-hidden=\"true\"><span class=\"ds-dim-line\"></span><span class=\"ds-dim-tick ds-dim-l\"></span><span class=\"ds-dim-tick ds-dim-r\"></span></div>",
+      "css": ".ds-dim { position: relative; height: 16px; max-width: 44rem; transform-origin: left; } .ds-dim-line { position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--color-rule-strong, #4a4a4a); } .ds-dim-tick { position: absolute; top: 0; height: 100%; border-left: 1px solid var(--color-rule-strong, #4a4a4a); } .ds-dim-l { left: 0; } .ds-dim-r { right: 0; } @media (prefers-reduced-motion: no-preference) { .ds-dim { animation: ds-draw 900ms cubic-bezier(0.16, 1, 0.3, 1) both; } } @keyframes ds-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Drawing Office",
+    "overview": "Every page is one engineering drawing sheet. A bordered, faintly gridded sheet sits inset from a pure black ground; a numbered sheet register runs across its head as navigation; a title block at its foot states which drawing this is and doubles as contact. The site documents its author the way he documents systems: schedules of labelled rows, hairline rules, dimension lines with end ticks, and one authored reference-architecture drawing that the reader can trace.\n\nThe palette is graphite: near-black neutrals in the spirit of Vercel and Expo, with meaning carried by lightness, weight and underline rather than hue. One drafting-highlighter yellow exists, and it marks only what is live. Density is moderate and quiet: generous section spacing, long-measure prose capped near 65ch, and tabular schedules that reward a slower read. It is not flashy, not corporate, and not \"hacker\": no terminal green, no neon, no monospace-everything.\n\nMotion is drafting motion. The name is lettered narrow to wide on the width axis, the drawing draws itself stroke by stroke, rules and dimension lines draw as they scroll in, register rows draw a leader line on hover, and sheets swap with a short crossfade. All of it is gated behind `prefers-reduced-motion: no-preference`.",
+    "keyCharacteristics": [
+      "One bordered sheet per page, inset from a black ground, with a 48px drafting grid.",
+      "One family, Archivo Variable, used across its width axis: wide for names and headings, normal for prose, semi-condensed for labels and numbers.",
+      "Schedules (margin-column label, value beside it) as the universal content pattern.",
+      "Square corners, 1px rules, no shadows.",
+      "A single accent, reserved for live state and always paired with weight, underline or stroke width."
+    ],
+    "rules": [
+      { "name": "The Lightness Carries Meaning Rule", "body": "Every state (current page, link, hover, active, selected) must be distinguishable in greyscale. A state change moves lightness, weight, underline or stroke width; hue alone never carries it.", "section": "colors" },
+      { "name": "The Live Signal Rule", "body": "Yellow marks only what is live right now and always travels with a second cue: heavier stroke (2.25 vs 1.25), semibold label, or a 2px underline. If an element is yellow at rest, it is wrong.", "section": "colors" },
+      { "name": "The One Family Rule", "body": "Archivo is the only typeface. Hierarchy comes from width, weight and lightness; never introduce a second family or a monospace face.", "section": "typography" },
+      { "name": "The Tabular Reference Rule", "body": "Sheet numbers, references, dates and editions are set with tabular figures at semi-condensed width.", "section": "typography" },
+      { "name": "The Paper Is Flat Rule", "body": "Nothing lifts off the sheet. Separation is a rule or a lightness step, never a shadow, glow or blur.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do frame every page as one sheet: inset border in strong rule, drafting grid, register at the head, title block at the foot with the route's drawing number.",
+      "Do carry every state by lightness, weight, underline or stroke width so it survives greyscale.",
+      "Do pair signal yellow with a second cue every time it appears.",
+      "Do lay out lists of facts as schedules with a margin column and hairline rows.",
+      "Do set references, dates and sheet numbers in tabular, semi-condensed Archivo.",
+      "Do gate every animation behind reduced-motion preference and use the drafting ease (cubic-bezier(0.16, 1, 0.3, 1)).",
+      "Do caption any illustration as a generic reference architecture, never a client, employer or internal tool."
+    ],
+    "donts": [
+      "Don't introduce a second hue, a gradient accent, or any red/green distinction.",
+      "Don't use yellow at rest, for decoration, or for static emphasis.",
+      "Don't add shadows, glows, blurs or rounded corners.",
+      "Don't add a second typeface or a monospace face.",
+      "Don't depict, diagram or name any specific internal tool, client or employer system in drawings or fixtures.",
+      "Don't fall back to a centred \"Hi, I'm\" hero over a row of project cards."
+    ]
+  }
+}

@@ -14,6 +14,12 @@ export const caseStudySchema = z.object({
 	stack: z.array(z.string().min(1)).min(1),
 })
 
-export type CaseStudy = z.infer<typeof caseStudySchema>
+export type CaseStudy = z.infer<typeof caseStudySchema> & {
+	/** Drawing reference, e.g. "RH-02.1"; assigned by list position. */
+	reference: string
+}
 
-export type CaseStudySummary = Pick<CaseStudy, 'slug' | 'title' | 'summary'>
+export type CaseStudySummary = Pick<
+	CaseStudy,
+	'slug' | 'title' | 'summary' | 'reference'
+>

@@ -16,6 +16,7 @@ function useSection() {
 	return context
 }
 
+/** A titled band on the sheet, opened by a hairline rule that draws in on scroll. */
 function SectionRoot({
 	id,
 	className,
@@ -29,7 +30,15 @@ function SectionRoot({
 
 	return (
 		<SectionContext value={{ titleId }}>
-			<section id={id} aria-labelledby={titleId} className={className}>
+			<section
+				id={id}
+				aria-labelledby={titleId}
+				className={cn('rule-timeline relative pt-8', className)}
+			>
+				<span
+					aria-hidden="true"
+					className="draw-on-view absolute inset-x-0 top-0 h-px origin-left bg-rule"
+				/>
 				{children}
 			</section>
 		</SectionContext>
@@ -40,7 +49,10 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 	const { titleId } = useSection()
 
 	return (
-		<h2 id={titleId} className="text-2xl font-semibold">
+		<h2
+			id={titleId}
+			className="text-[1.75rem] leading-tight font-semibold tracking-[-0.02em] text-bright [font-stretch:112%] sm:text-[2rem]"
+		>
 			{children}
 		</h2>
 	)
@@ -53,7 +65,7 @@ function SectionBody({
 	className?: string
 	children: React.ReactNode
 }) {
-	return <div className={cn('mt-4 max-w-prose', className)}>{children}</div>
+	return <div className={cn('mt-6', className)}>{children}</div>
 }
 
 /** A titled page section; the title labels the section for assistive tech. */

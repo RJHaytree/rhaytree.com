@@ -11,6 +11,7 @@ const published: Array<z.input<typeof caseStudySchema>> = []
 const caseStudies: Array<CaseStudy> = z
 	.array(caseStudySchema)
 	.parse(import.meta.env.DEV ? caseStudyFixtures : published)
+	.map((study, index) => ({ ...study, reference: `RH-02.${index + 1}` }))
 
 export async function listCaseStudies(): Promise<Array<CaseStudy>> {
 	return caseStudies

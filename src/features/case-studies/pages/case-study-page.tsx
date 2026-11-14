@@ -1,5 +1,5 @@
 import { Page } from '#/components/layout/page'
-import { Section } from '#/components/ui/section'
+import { Notes } from '#/components/ui/notes'
 import { TextLink } from '#/components/ui/text-link'
 
 import type { CaseStudy } from '../types/case-study'
@@ -7,62 +7,48 @@ import type { CaseStudy } from '../types/case-study'
 export function CaseStudyPage({ study }: { study: CaseStudy }) {
 	return (
 		<Page.Root>
-			<article className="space-y-12">
-				<div>
-					<p className="mb-6">
-						<TextLink to="/work">All work</TextLink>
-					</p>
-					<Page.Title>{study.title}</Page.Title>
-					<Page.Lead>{study.summary}</Page.Lead>
+			<article>
+				<p className="mb-8">
+					<TextLink to="/work">All work</TextLink>
+				</p>
+				<div className="mb-14">
+					<Page.Header>
+						<Page.Title>{study.title}</Page.Title>
+						<Page.Lead>{study.summary}</Page.Lead>
+					</Page.Header>
 				</div>
 
-				<Section.Root>
-					<Section.Title>Context</Section.Title>
-					<Section.Body>
+				<Notes.Root>
+					<Notes.Item title="Context">
 						<p>{study.context}</p>
-					</Section.Body>
-				</Section.Root>
-
-				<Section.Root>
-					<Section.Title>The problem</Section.Title>
-					<Section.Body>
+					</Notes.Item>
+					<Notes.Item title="The problem">
 						<p>{study.problem}</p>
-					</Section.Body>
-				</Section.Root>
-
-				<Section.Root>
-					<Section.Title>My role</Section.Title>
-					<Section.Body>
+					</Notes.Item>
+					<Notes.Item title="My role">
 						<p>{study.role}</p>
-					</Section.Body>
-				</Section.Root>
-
-				<Section.Root>
-					<Section.Title>Approach</Section.Title>
-					<Section.Body className="space-y-4">
+					</Notes.Item>
+					<Notes.Item title="Approach">
 						{study.approach.map((paragraph) => (
 							<p key={paragraph}>{paragraph}</p>
 						))}
-					</Section.Body>
-				</Section.Root>
-
-				<Section.Root>
-					<Section.Title>Outcome</Section.Title>
-					<Section.Body>
+					</Notes.Item>
+					<Notes.Item title="Outcome">
 						<p>{study.outcome}</p>
-					</Section.Body>
-				</Section.Root>
-
-				<Section.Root>
-					<Section.Title>Stack</Section.Title>
-					<Section.Body>
-						<ul className="flex flex-wrap gap-x-4 gap-y-1">
+					</Notes.Item>
+					<Notes.Item title="Stack">
+						<ul className="m-0 flex list-none flex-wrap gap-x-2 gap-y-2 p-0">
 							{study.stack.map((item) => (
-								<li key={item}>{item}</li>
+								<li
+									key={item}
+									className="border border-rule px-2.5 py-0.5 text-[0.9375rem] text-muted"
+								>
+									{item}
+								</li>
 							))}
 						</ul>
-					</Section.Body>
-				</Section.Root>
+					</Notes.Item>
+				</Notes.Root>
 			</article>
 		</Page.Root>
 	)

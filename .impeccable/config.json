@@ -5,5 +5,18 @@
 			"maxFindings": 5,
 			"maxChars": 8000
 		}
+	},
+	"detector": {
+		"ignoreRules": [],
+		"ignoreFiles": [],
+		"ignoreValues": [
+			{
+				"rule": "codex-grid-background",
+				"value": "*",
+				"files": ["src/styles.css"],
+				"createdAt": "2026-11-14T18:41:12.773Z",
+				"reason": "Agent: the drafting grid is the engineering-drawing sheet of the user-chosen Drawing Office world (a blueprint surface), not decoration"
+			}
+		]
 	}
 }

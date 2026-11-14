@@ -8,28 +8,27 @@ import type { caseStudySchema } from '../types/case-study'
  */
 export const caseStudyFixtures: Array<z.input<typeof caseStudySchema>> = [
 	{
-		slug: 'self-service-provisioning',
-		title: 'Self-service cloud provisioning platform',
+		slug: 'resilient-service-architecture',
+		title: 'Designing a resilient service architecture',
 		summary:
-			'[Fixture] An internal tool that let product teams provision AWS environments and deploy services without waiting on an ops ticket.',
+			'[Fixture] A target architecture that let a growing product survive the loss of a zone without downtime.',
 		featured: true,
-		context: '[Fixture] A UK software company with around 40 engineers.',
+		context: '[Fixture] A fictional online booking product.',
 		problem:
-			'Each new client environment took several days of manual AWS setup, and every team deployed in a slightly different way.',
-		role: 'Lead engineer and architect, working with two developers and the operations lead.',
+			'Every service ran in one place, so a single infrastructure failure took the whole product offline.',
+		role: 'Architect responsible for the target design and its rollout plan.',
 		approach: [
-			'Mapped the existing manual steps into a single provisioning flow covering Lightsail for small workloads and EC2 for larger ones.',
-			'Built reusable Terraform modules so every environment started from the same hardened baseline.',
-			'Defined a standard deployment flow that teams could adopt one service at a time.',
+			'Mapped which services depended on which, and which could tolerate delay.',
+			'Spread services across two zones, with a queue between the parts that did not need to answer immediately.',
+			'Replicated the database between zones and rehearsed failover before relying on it.',
 		],
 		outcome:
-			'Environment setup went from days to under an hour, and deployments became consistent across teams.',
+			'A zone failure now degrades the product instead of stopping it.',
 		stack: [
-			'AWS EC2',
-			'AWS Lightsail',
+			'Cloud load balancing',
+			'Message queue',
+			'PostgreSQL',
 			'Terraform',
-			'TypeScript',
-			'GitHub Actions',
 		],
 	},
 	{
