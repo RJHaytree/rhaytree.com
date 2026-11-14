@@ -11,7 +11,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { reactQueryDevtools } from '#/lib/react-query'
 import { NotFoundPage } from '../components/layout/not-found-page'
 import { SiteLayout } from '../components/layout/site-layout'
-import { greyscaleBootScript } from '../components/ui/greyscale-toggle'
+import { themeBootScript } from '../components/ui/theme-toggle'
 import appCss from '../styles.css?url'
 
 interface MyRouterContext {
@@ -46,10 +46,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		// The greyscale boot script may add a class to <html> before hydration.
+		// The theme boot script may add a class to <html> before hydration.
 		<html lang="en-GB" suppressHydrationWarning>
 			<head>
-				<ScriptOnce>{greyscaleBootScript}</ScriptOnce>
+				<ScriptOnce>{themeBootScript}</ScriptOnce>
 				<HeadContent />
 			</head>
 			<body>
