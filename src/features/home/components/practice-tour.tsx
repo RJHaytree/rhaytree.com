@@ -110,7 +110,9 @@ function Step({ area, index }: { area: Area; index: number }) {
 			([entry]) => {
 				if (entry?.isIntersecting) activate(area.id)
 			},
-			{ rootMargin: '-50% 0px -50% 0px' },
+			// A thin trigger line a third of the way down the viewport, level
+			// with the upper part of the pinned diagram.
+			{ rootMargin: '-35% 0px -65% 0px' },
 		)
 		observer.observe(element)
 		return () => observer.disconnect()
@@ -119,7 +121,7 @@ function Step({ area, index }: { area: Area; index: number }) {
 	return (
 		<li
 			ref={ref}
-			className="border-b border-rule py-10 lg:flex lg:min-h-[52vh] lg:flex-col lg:justify-center lg:py-12"
+			className="border-b border-rule py-10 lg:min-h-[48vh] lg:py-12"
 		>
 			<p className="flex items-center gap-3 text-muted tabular-nums [font-stretch:87.5%]">
 				<span>{String(index + 1).padStart(2, '0')}</span>
@@ -173,7 +175,7 @@ function PracticeTourStage() {
 	const area = areas[index] ?? areas[0]
 
 	return (
-		<figure className="sticky top-[max(2rem,calc(50vh-17rem))] m-0">
+		<figure className="sticky top-8 m-0">
 			<div key={area.id} className="draw-fade">
 				<area.Diagram />
 			</div>

@@ -195,7 +195,7 @@ export function InfrastructureAsCodeDiagram() {
 		<Diagram title="Diagram: an environment composed from network, compute and data Terraform modules, reviewed as a plan before it is applied">
 			<Layer>
 				<Box x={165} y={20} w={150} h={48} label="Environment" />
-				<Line d="M240 68 V100 H85 V130 M240 100 V130 M395 100 V130" />
+				<Line d="M240 68 V100 M85 100 H395 M85 100 V130 M240 100 V130 M395 100 V130" />
 				<Line
 					d={`${head.down(85, 130)} ${head.down(240, 130)} ${head.down(395, 130)}`}
 				/>
