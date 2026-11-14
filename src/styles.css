@@ -178,6 +178,11 @@
 	}
 }
 
+/* Site-wide greyscale view (header toggle); set before paint by a boot script. */
+html.greyscale {
+	filter: grayscale(1);
+}
+
 /* The faint 48px drafting grid on every sheet. */
 @utility drafting-grid {
 	background-color: var(--color-sheet);

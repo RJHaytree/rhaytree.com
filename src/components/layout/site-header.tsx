@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
+import { GreyscaleToggle } from '../ui/greyscale-toggle'
 import { Nav } from '../ui/nav'
 
 /** The sheet register: the site's navigation, numbered like a drawing set. */
@@ -41,6 +42,7 @@ export function SiteHeader() {
 						</Nav.Anchor>
 					</Nav.Item>
 				</Nav.Root>
+				<GreyscaleToggle />
 			</div>
 		</header>
 	)
