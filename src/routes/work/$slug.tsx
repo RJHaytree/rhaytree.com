@@ -1,8 +1,7 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 
-import { Page } from '../../components/layout/page'
-import { TextLink } from '../../components/ui/text-link'
-import { getCaseStudy } from '../../content/case-studies'
+import { getCaseStudy } from '#/features/case-studies/api/case-studies'
+import { CaseStudyPage } from '#/features/case-studies/pages/case-study-page'
 
 export const Route = createFileRoute('/work/$slug')({
   loader: async ({ params }) => {
@@ -18,21 +17,7 @@ export const Route = createFileRoute('/work/$slug')({
         ]
       : [],
   }),
-  component: CaseStudyPage,
+  component: function CaseStudyRoute() {
+    return <CaseStudyPage study={Route.useLoaderData()} />
+  },
 })
-
-function CaseStudyPage() {
-  const study = Route.useLoaderData()
-
-  return (
-    <Page.Root>
-      <article>
-        <p className="mb-6">
-          <TextLink to="/work">All work</TextLink>
-        </p>
-        <Page.Title>{study.title}</Page.Title>
-        <Page.Lead>{study.summary}</Page.Lead>
-      </article>
-    </Page.Root>
-  )
-}

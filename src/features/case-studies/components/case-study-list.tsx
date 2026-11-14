@@ -1,11 +1,11 @@
-import { TextLink } from './text-link'
+import { TextLink } from '#/components/ui/text-link'
 
-import type { CaseStudy } from '../../content/case-studies'
+import type { CaseStudySummary } from '../types/case-study'
 
 export function CaseStudyList({
   studies,
 }: {
-  studies: Array<Pick<CaseStudy, 'slug' | 'title' | 'summary'>>
+  studies: Array<CaseStudySummary>
 }) {
   return (
     <ul className="space-y-6">

@@ -1,20 +1,19 @@
 import { z } from 'zod'
 
-export const caseStudySchema = z.object({
-  slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
-  title: z.string().min(1),
-  summary: z.string().min(1),
-  featured: z.boolean().default(false),
-})
-
-export type CaseStudy = z.infer<typeof caseStudySchema>
+import { caseStudySchema } from '../types/case-study'
+import type { CaseStudy } from '../types/case-study'
 
 // Empty until case studies are written and cleared under NDA.
-// Keep this module as the single source so it can move to D1 later.
+// This module is the single source, so it can move to D1 later without
+// touching pages or routes.
 const caseStudies: Array<CaseStudy> = z.array(caseStudySchema).parse([])
 
 export async function listCaseStudies(): Promise<Array<CaseStudy>> {
   return caseStudies
+}
+
+export async function listFeaturedCaseStudies(): Promise<Array<CaseStudy>> {
+  return caseStudies.filter((study) => study.featured)
 }
 
 export async function getCaseStudy(
