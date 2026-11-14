@@ -1,8 +1,7 @@
 import { z } from 'zod'
-
+import type { CaseStudy } from '../types/case-study'
 import { caseStudySchema } from '../types/case-study'
 import { caseStudyFixtures } from './case-studies.fixtures'
-import type { CaseStudy } from '../types/case-study'
 
 // Real case studies go here once written and cleared under NDA.
 const published: Array<z.input<typeof caseStudySchema>> = []

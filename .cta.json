@@ -1,4 +1,4 @@
-{
+﻿{
   "projectName": "personal",
   "mode": "file-router",
   "bundler": "vite",
@@ -14,9 +14,5 @@
   "includeExamples": false,
   "version": 1,
   "framework": "react",
-  "chosenAddOns": [
-    "tanstack-query",
-    "eslint",
-    "cloudflare"
-  ]
+  "chosenAddOns": ["tanstack-query", "biome", "cloudflare"]
 }

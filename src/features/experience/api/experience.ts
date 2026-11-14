@@ -1,7 +1,7 @@
-import { experienceSchema } from '../types/experience'
-import { experienceFixture } from './experience.fixtures'
 import type { z } from 'zod'
 import type { Experience } from '../types/experience'
+import { experienceSchema } from '../types/experience'
+import { experienceFixture } from './experience.fixtures'
 
 // Real roles and skills go here.
 const published: z.input<typeof experienceSchema> = {
