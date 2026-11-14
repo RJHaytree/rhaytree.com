@@ -35,7 +35,7 @@ function NavAnchor({
 		<a
 			ref={ref}
 			className={cn(
-				'text-muted no-underline transition-colors duration-150 hover:text-bright hover:underline data-[status=active]:text-bright data-[status=active]:underline',
+				'text-muted no-underline decoration-2 underline-offset-[6px] transition-colors duration-150 hover:text-bright hover:underline hover:decoration-rule-strong data-[status=active]:text-bright data-[status=active]:underline data-[status=active]:decoration-signal',
 				className,
 			)}
 			{...props}
@@ -49,7 +49,7 @@ const NavLink = createLink(NavAnchor)
 /** The sheet number that prefixes a register entry. */
 function NavNumber({ children }: { children: React.ReactNode }) {
 	return (
-		<span className="mr-1.5 tabular-nums [font-stretch:87.5%]">
+		<span className="mr-1.5 font-mono text-sm tabular-nums">
 			{children}
 		</span>
 	)

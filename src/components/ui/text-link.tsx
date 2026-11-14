@@ -12,7 +12,7 @@ export function Anchor({
 		<a
 			ref={ref}
 			className={cn(
-				'text-bright underline decoration-rule-strong transition-colors duration-150 hover:decoration-bright',
+				'text-sky-9 underline decoration-sky-6 transition-colors duration-150 hover:text-sky-10 hover:decoration-sky-9',
 				className,
 			)}
 			{...props}

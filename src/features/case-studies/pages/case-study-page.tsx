@@ -41,7 +41,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
 							{study.stack.map((item) => (
 								<li
 									key={item}
-									className="border border-rule px-2.5 py-0.5 text-[0.9375rem] text-muted"
+									className="border border-rule px-2.5 py-0.5 font-mono text-sm text-muted"
 								>
 									{item}
 								</li>

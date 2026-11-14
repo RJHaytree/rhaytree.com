@@ -24,7 +24,7 @@ function NotesItem({
 		>
 			<h2
 				id={titleId}
-				className="text-base font-semibold text-bright [font-stretch:87.5%]"
+				className="font-mono text-sm leading-7 font-medium text-bright"
 			>
 				{title}
 			</h2>

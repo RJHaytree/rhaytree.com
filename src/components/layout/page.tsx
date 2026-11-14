@@ -31,7 +31,7 @@ function PageHeader({ children }: { children: React.ReactNode }) {
 /** The sheet's single h1, set wide. */
 function PageTitle({ children }: { children: React.ReactNode }) {
 	return (
-		<h1 className="text-4xl leading-[1.05] font-semibold tracking-[-0.02em] text-bright [font-stretch:112%] sm:text-5xl">
+		<h1 className="text-4xl leading-[1.05] font-semibold tracking-[-0.02em] text-bright sm:text-5xl">
 			{children}
 		</h1>
 	)

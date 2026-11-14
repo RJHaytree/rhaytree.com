@@ -51,7 +51,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 	return (
 		<h2
 			id={titleId}
-			className="text-[1.75rem] leading-tight font-semibold tracking-[-0.02em] text-bright [font-stretch:112%] sm:text-[2rem]"
+			className="text-[1.75rem] leading-tight font-semibold tracking-[-0.02em] text-bright sm:text-[2rem]"
 		>
 			{children}
 		</h2>

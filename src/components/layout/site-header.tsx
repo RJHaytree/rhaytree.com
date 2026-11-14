@@ -16,7 +16,7 @@ export function SiteHeader() {
 			<div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 px-5 py-4 sm:px-8 lg:px-10">
 				<Link
 					to="/"
-					className="font-semibold text-bright no-underline [font-stretch:112%]"
+					className="font-display font-semibold text-bright no-underline [font-stretch:112%]"
 				>
 					Ryan Haytree
 				</Link>

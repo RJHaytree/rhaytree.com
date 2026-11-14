@@ -110,22 +110,23 @@
 }
 
 /*
- * Drawing Office (graphite). Meaning is carried by lightness, weight and
- * underline, never hue: the palette is deliberately neutral.
+ * Drawing Office, v2. Semantic roles the components use, mapped onto the
+ * scales above: tinted graphite surfaces, signal for live state, sky for
+ * links and controls. Meaning never relies on hue alone.
  */
 @theme {
-	--font-sans: "Archivo Variable", "Helvetica Neue", Arial, sans-serif;
+	--font-sans: "Geist Variable", "Helvetica Neue", Arial, sans-serif;
 
-	--color-ground: #000000;
-	--color-sheet: #0a0a0a;
-	--color-grid: #141414;
-	--color-rule: #2e2e2e;
-	--color-rule-strong: #4a4a4a;
-	--color-muted: #a1a1a1;
-	--color-ink: #ededed;
-	--color-bright: #ffffff;
-	/* The one accent: live elements only, always paired with weight or brightness. */
-	--color-signal: #ffd23f;
+	--color-ground: oklch(0.13 0.012 255);
+	--color-sheet: oklch(0.16 0.012 255);
+	--color-grid: oklch(0.185 0.013 255);
+	--color-rule: oklch(0.27 0.015 255);
+	--color-rule-strong: oklch(0.38 0.017 255);
+	--color-muted: oklch(0.76 0.014 255);
+	--color-ink: oklch(0.93 0.006 255);
+	--color-bright: oklch(0.985 0.003 255);
+	/* Live state only, always paired with weight or brightness. */
+	--color-signal: oklch(0.87 0.17 92);
 
 	--ease-draft: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -167,9 +168,12 @@
 		text-decoration-thickness: 1px;
 	}
 
+	/* Archivo is the display face: headings set wide. */
 	h1,
 	h2,
 	h3 {
+		font-family: var(--font-display);
+		font-stretch: 112%;
 		text-wrap: balance;
 	}
 
@@ -224,8 +228,8 @@ html.greyscale {
 .system-drawing .drawing-part text {
 	fill: var(--color-muted);
 	stroke: none;
+	font-family: var(--font-mono);
 	font-size: 13px;
-	font-stretch: 87.5%;
 	transition: fill 200ms var(--ease-draft);
 }
 

@@ -19,7 +19,7 @@ export function CaseStudyList({
 					className="group grid gap-x-8 gap-y-1 border-b border-rule py-5 sm:grid-cols-[6.5rem_minmax(0,1fr)]"
 				>
 					<span className="flex items-center gap-3 sm:h-7">
-						<span className="text-muted tabular-nums transition-colors duration-200 [font-stretch:87.5%] group-focus-within:text-bright group-hover:text-bright">
+						<span className="font-mono text-sm text-muted tabular-nums transition-colors duration-200 group-focus-within:text-bright group-hover:text-bright">
 							{study.reference}
 						</span>
 						{/* Leader: from the reference's edge across the gutter to the title. */}

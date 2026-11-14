@@ -19,7 +19,7 @@ export function RoleList({ roles }: { roles: Array<Role> }) {
 					key={`${role.organisation}-${role.start}`}
 					className="grid gap-x-10 gap-y-2 border-b border-rule py-7 md:grid-cols-[12rem_minmax(0,1fr)]"
 				>
-					<p className="text-muted tabular-nums [font-stretch:87.5%]">
+					<p className="font-mono text-sm leading-7 text-muted tabular-nums">
 						<time dateTime={role.start}>
 							{formatYearMonth(role.start)}
 						</time>
