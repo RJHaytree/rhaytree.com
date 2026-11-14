@@ -41,6 +41,11 @@ npm run lint       # lint only
 npm run format     # format only (writes)
 ```
 
+Git hooks (Husky, installed by `npm install`):
+
+- **pre-commit:** runs `biome check --write` on staged files via lint-staged, re-staging the fixes. Anything Biome can't fix safely blocks the commit.
+- **pre-push:** runs `npm run check` and `npm run typecheck`.
+
 
 ## Deploy to Cloudflare Workers
 
