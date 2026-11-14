@@ -42,3 +42,37 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  deploy:
+    name: Deploy to Cloudflare Workers
+    # Only pushes to main deploy; pull requests stop after the checks.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Never cancel a deploy part-way; queue the next one instead.
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    env:
+      HUSKY: 0
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      # Not secret: identifies the account, grants nothing on its own.
+      CLOUDFLARE_ACCOUNT_ID: 047714be138519c688e2c56c4c83d799
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Review build (sample content, noindex) until the real launch, when
+      # this becomes `npm run deploy`.
+      - name: Build and deploy
+        run: npm run deploy:review
