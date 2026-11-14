@@ -6,6 +6,10 @@ const yearMonth = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/)
 export const roleSchema = z.object({
 	title: z.string().min(1),
 	organisation: z.string().min(1),
+	/** Where the organisation is, e.g. "Birmingham, UK". */
+	location: z.string().min(1).optional(),
+	/** How the role is worked, e.g. "Remote", "Hybrid", "Part-time". */
+	arrangement: z.string().min(1).optional(),
 	start: yearMonth,
 	/** Omit for a current role. */
 	end: yearMonth.optional(),
