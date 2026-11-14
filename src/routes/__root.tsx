@@ -32,6 +32,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				content:
 					'Ryan Haytree, platform and systems engineer: cloud architecture, internal developer tooling and infrastructure.',
 			},
+			// Review builds carry sample content: keep them out of search.
+			...(import.meta.env.MODE === 'review'
+				? [{ name: 'robots', content: 'noindex, nofollow' }]
+				: []),
 		],
 		links: [{ rel: 'stylesheet', href: appCss }],
 	}),

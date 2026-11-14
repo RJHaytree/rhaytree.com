@@ -3,5 +3,8 @@
 	"name": "rhaytree-personal",
 	"compatibility_date": "2026-11-01",
 	"compatibility_flags": ["nodejs_compat"],
-	"main": "@tanstack/react-start/server-entry"
+	"main": "@tanstack/react-start/server-entry",
+	// Serve the site on the apex domain; Cloudflare creates the DNS record.
+	"routes": [{ "pattern": "rhaytree.com", "custom_domain": true }],
+	"observability": { "enabled": true }
 }

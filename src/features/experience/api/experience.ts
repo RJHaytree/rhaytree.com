@@ -9,10 +9,13 @@ const published: z.input<typeof experienceSchema> = {
 	skillGroups: [],
 }
 
-// The dev server uses fixtures; production builds only ever see `published`
-// (import.meta.env.DEV is false at build time, so fixtures are tree-shaken).
+// Fixtures show on the dev server and in review builds (`--mode review`).
+// Both values are constants at build time, so a normal production build
+// only ever sees `published` and tree-shakes the fixtures away.
+const includeFixtures = import.meta.env.DEV || import.meta.env.MODE === 'review'
+
 const experience: Experience = experienceSchema.parse(
-	import.meta.env.DEV ? experienceFixture : published,
+	includeFixtures ? experienceFixture : published,
 )
 
 export async function getExperience(): Promise<Experience> {
