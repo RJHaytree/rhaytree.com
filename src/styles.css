@@ -182,6 +182,42 @@
 	}
 }
 
+/*
+ * Home system sketch: inputs travel from the sources to the model, records
+ * from the model to the end. Hidden entirely under reduced motion.
+ */
+.sketch-input,
+.sketch-record {
+	opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.sketch-input {
+		offset-path: path("M36 76 H188");
+		animation: sketch-travel 4.2s linear infinite;
+	}
+
+	.sketch-record {
+		offset-path: path("M188 76 H412");
+		animation: sketch-travel 4.2s linear infinite;
+	}
+}
+
+@keyframes sketch-travel {
+	0% {
+		offset-distance: 0%;
+		opacity: 0;
+	}
+	10%,
+	85% {
+		opacity: 1;
+	}
+	100% {
+		offset-distance: 100%;
+		opacity: 0;
+	}
+}
+
 /* Site-wide greyscale view (header toggle); set before paint by a boot script. */
 html.greyscale {
 	filter: grayscale(1);

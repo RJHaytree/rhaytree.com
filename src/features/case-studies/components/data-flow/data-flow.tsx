@@ -352,7 +352,7 @@ function DataFlowDiagram() {
 	const queued = state.queue
 
 	return (
-		<div>
+		<div className="max-w-[52rem]">
 			<p className="mb-2 font-mono text-xs text-muted sm:hidden">
 				Scroll sideways to see the whole flow.
 			</p>

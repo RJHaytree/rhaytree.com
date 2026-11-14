@@ -63,7 +63,7 @@ export function SectionNav({
 								href={`#${link.id}`}
 								aria-current={isActive ? 'location' : undefined}
 								className={cn(
-									'group flex items-center gap-4 py-1.5 no-underline transition-colors duration-200',
+									'group flex items-center gap-4 py-1 no-underline transition-colors duration-200',
 									isActive
 										? 'text-bright'
 										: 'text-muted hover:text-ink',
