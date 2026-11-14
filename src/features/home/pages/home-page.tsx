@@ -10,11 +10,13 @@ import { RoleList } from '#/features/experience/components/role-list'
 import type { Experience } from '#/features/experience/types/experience'
 
 import { practiceAreas } from '../api/practice-areas'
+import { DataFlow } from '../components/data-flow/data-flow'
 import { PracticeList } from '../components/practice-list'
 
 const sections = [
 	{ id: 'about', label: 'About' },
 	{ id: 'practice', label: 'Practice' },
+	{ id: 'flow', label: 'Data flow' },
 	{ id: 'experience', label: 'Experience' },
 	{ id: 'work', label: 'Work' },
 ]
@@ -92,6 +94,30 @@ export function HomePage({
 						<Section.Title>Areas of practice</Section.Title>
 						<Section.Body>
 							<PracticeList areas={practiceAreas} />
+						</Section.Body>
+					</Section.Root>
+
+					<Section.Root id="flow">
+						<Section.Title>How data flows</Section.Title>
+						<Section.Body className="space-y-6">
+							<p className="max-w-[60ch] text-lg text-muted">
+								Data arrives from many sources, waits in a
+								queue, is normalised into one model, then stored
+								and served. Try the controls to see how the
+								system copes.
+							</p>
+							<DataFlow.Root>
+								<div className="space-y-5">
+									<DataFlow.Controls />
+									<DataFlow.Diagram />
+									<DataFlow.Stats />
+									<DataFlow.Key />
+									<p className="font-mono text-xs text-muted">
+										Illustrative simulation. Not a client or
+										employer system.
+									</p>
+								</div>
+							</DataFlow.Root>
 						</Section.Body>
 					</Section.Root>
 
