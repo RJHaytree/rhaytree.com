@@ -99,10 +99,10 @@ components:
     textColor: "{colors.sky-9}"
   text-link-hover:
     textColor: "{colors.sky-10}"
-  greyscale-toggle:
+  theme-toggle:
     textColor: "{colors.muted}"
     typography: "{typography.body}"
-  greyscale-toggle-pressed:
+  theme-toggle-hover:
     textColor: "{colors.bright}"
   title-block:
     backgroundColor: "{colors.sheet}"
@@ -137,7 +137,8 @@ Motion is drafting motion. The name is lettered narrow to wide on the width axis
 - Ten-step OKLCH scales with fixed step roles: 1-3 backgrounds, 4-6 borders, 7-8 solid fills, 9 secondary text, 10 primary text.
 - Schedules (number or margin-column label, value beside it, hairline rows) as the universal content pattern.
 - Square corners, 1px rules, no shadows.
-- Every state survives greyscale; a site-wide greyscale toggle lets any visitor check.
+- Two themes from one set of roles: dark graphite (the default world) and light drafting paper, switched with a circular reveal.
+- Every state survives greyscale in both themes.
 
 ## Colors
 
@@ -161,6 +162,9 @@ Blue-tinted graphite surfaces and text, one yellow for live state, one blue for 
 - **Muted Graphite** (muted, graphite-9): secondary text: leads, descriptions, labels, references and dates, register and section-nav entries at rest.
 - **Ink** (ink, graphite-10): body text.
 - **Bright** (bright): emphasis: headings, the name, current register and section-nav entries, schedule titles, the focus ring, the selection background.
+
+### Light Theme
+Drafting paper: `html.light` flips every scale so each step keeps its job (1-3 backgrounds, 4-6 borders, 7-8 solids, 9-10 text), and the semantic roles follow (sheet oklch 0.975, ground 0.945, ink 0.24, bright 0.15, muted 0.42, all at hue 255). Signal deepens to ochre (oklch 0.72 0.155 80) so it still reads as a mark on white; category solids darken so each stays distinct by lightness from its pair. Components never carry theme-specific classes: a colour that only works in one theme is a bug in the scale, not the component. Dark is the default; a saved choice wins, otherwise the system setting, applied before first paint.
 
 ### Named Rules
 **The Lightness Carries Meaning Rule.** Every state (current page, current section, link, hover, pressed, active) must be distinguishable in greyscale. A state change moves lightness, weight, length, underline or stroke width; hue alone never carries it.
@@ -215,13 +219,13 @@ Square everywhere: sheet, title block, tags and focus ring (a 1px radius on the 
 ## Components
 
 ### Sheet Register (navigation)
-Numbered like a drawing set: the name at left (Archivo 600, wide, bright), entries "01 Home" to "04 Contact", each prefixed by a Geist Mono tabular number, then the greyscale toggle. Entries rest in muted graphite. Hover turns the entry bright with a 2px strong-rule underline at 6px offset; the current sheet is bright with a 2px signal underline. Two-column grid on phones, single row from sm. A skip link inverts to bright on ground when focused.
+Numbered like a drawing set: the name at left (Archivo 600, wide, bright), entries "01 Home" to "04 Contact", each prefixed by a Geist Mono tabular number, then the theme toggle. Entries rest in muted graphite. Hover turns the entry bright with a 2px strong-rule underline at 6px offset; the current sheet is bright with a 2px signal underline. Two-column grid on phones, single row from sm. A skip link inverts to bright on ground when focused.
 
 ### Section Nav (signature)
 In-page navigation in the home identity column that follows the reader. Each entry is a mono number, a leader and a label. At rest: muted text, a 32px strong-rule hairline leader that grows to 48px on hover while the text lifts to ink. Current (the section crossing the upper third of the viewport, `aria-current="location"`): bright text and a 64px, 2px signal leader. The leader eases with the drafting curve over 300ms; the state reads by lightness and length before hue.
 
-### Greyscale Toggle
-A plain text button in the register: a 16px half-filled circle icon and the word "Greyscale". Muted at rest, bright on hover and when pressed (`aria-pressed`). It sets a greyscale filter on the whole document, remembered across visits and applied before first paint.
+### Theme Toggle
+A plain text button in the register: a 16px outlined icon (crescent in dark, sun in light, 1.5px stroke) and the current theme's name, "Dark" or "Light". Muted at rest, bright on hover; its accessible name says what it will do ("Switch to light theme"). Switching reveals the new theme as a circle growing from the button to the farthest corner over 650ms on the drafting ease, via a view transition scoped to the switch so route transitions keep their crossfade. Under reduced motion, or without view transitions, it swaps instantly. The choice is remembered across visits.
 
 ### Title Block
 A bordered schedule (`dl`) on the sheet surface: label column in Geist Mono muted graphite, value in ink, hairline between rows, 10px by 16px row padding. It appears at the foot of every sheet as contact (Drawing number and title from the route, Author, Email, GitHub, Edition), running flush into the sheet's edge by dropping the adjoining borders, and inside the home About section as the author's own title block.
@@ -245,7 +249,7 @@ A decorative horizontal strong-rule line with end ticks that measures the width 
 
 ### Do:
 - **Do** frame every page as one sheet: inset border in strong rule, drafting grid, register at the head, title block at the foot with the route's drawing number.
-- **Do** carry every state by lightness, weight, length, underline or stroke width so it survives the greyscale toggle.
+- **Do** carry every state by lightness, weight, length, underline or stroke width so it survives greyscale in both themes.
 - **Do** pair signal yellow with a second cue every time it appears.
 - **Do** pick colours by step role (1-3 backgrounds, 4-6 borders, 7-8 solids, 9 secondary text, 10 primary text).
 - **Do** pair every category colour with its fixed shape, and every status with its shape and words.

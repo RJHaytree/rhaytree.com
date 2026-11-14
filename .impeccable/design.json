@@ -65,12 +65,12 @@
       "css": ".ds-snav { margin: 0; padding: 0; list-style: none; font-family: 'Geist Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; } .ds-snav li + li { margin-top: 4px; } .ds-snav-link { display: flex; align-items: center; gap: 16px; padding: 6px 0; color: var(--color-muted, oklch(0.76 0.014 255)); text-decoration: none; transition: color 200ms; } .ds-snav-link:hover { color: var(--color-ink, oklch(0.93 0.006 255)); } .ds-snav-num { font-family: 'Geist Mono Variable', ui-monospace, Menlo, monospace; font-size: 0.875rem; font-variant-numeric: tabular-nums; } .ds-snav-lead { height: 1px; width: 32px; background: var(--color-rule-strong, oklch(0.38 0.017 255)); transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-snav-link:hover .ds-snav-lead { width: 48px; } .ds-snav-link[aria-current=location] { color: var(--color-bright, oklch(0.985 0.003 255)); } .ds-snav-link[aria-current=location] .ds-snav-lead { height: 2px; width: 64px; background: var(--color-signal, oklch(0.87 0.17 92)); } .ds-snav-link:focus-visible { outline: 2px solid var(--color-bright, oklch(0.985 0.003 255)); outline-offset: 3px; border-radius: 1px; } @media (prefers-reduced-motion: reduce) { .ds-snav-lead { transition: none; } }"
     },
     {
-      "name": "Greyscale Toggle",
+      "name": "Theme Toggle",
       "kind": "button",
-      "refersTo": "greyscale-toggle",
-      "description": "Text button with a half-filled circle icon; muted at rest, bright on hover and when pressed. Switches the whole site to greyscale.",
-      "html": "<button type=\"button\" class=\"ds-grey\" aria-pressed=\"false\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"8\" cy=\"8\" r=\"6.25\"/><path d=\"M8 1.75 A6.25 6.25 0 0 1 8 14.25 Z\" fill=\"currentColor\"/></svg><span>Greyscale</span></button>",
-      "css": ".ds-grey { display: flex; align-items: center; gap: 8px; padding: 0; border: 0; background: none; cursor: pointer; color: var(--color-muted, oklch(0.76 0.014 255)); font-family: 'Geist Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; transition: color 150ms; } .ds-grey:hover, .ds-grey[aria-pressed=true] { color: var(--color-bright, oklch(0.985 0.003 255)); } .ds-grey:focus-visible { outline: 2px solid var(--color-bright, oklch(0.985 0.003 255)); outline-offset: 3px; border-radius: 1px; }"
+      "refersTo": "theme-toggle",
+      "description": "Text button with an outlined crescent (dark) or sun (light) and the current theme's name; muted at rest, bright on hover. Switches between the dark and light themes with a circular reveal from the button.",
+      "html": "<button type=\"button\" class=\"ds-theme\" aria-label=\"Switch to light theme\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"><path d=\"M13.5 9.6A5.75 5.75 0 1 1 6.4 2.5a4.5 4.5 0 0 0 7.1 7.1Z\"/></svg><span aria-hidden=\"true\">Dark</span></button>",
+      "css": ".ds-theme { display: flex; align-items: center; gap: 8px; padding: 0; border: 0; background: none; cursor: pointer; color: var(--color-muted, oklch(0.76 0.014 255)); font-family: 'Geist Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; transition: color 150ms; } .ds-theme:hover { color: var(--color-bright, oklch(0.985 0.003 255)); } .ds-theme:focus-visible { outline: 2px solid var(--color-bright, oklch(0.985 0.003 255)); outline-offset: 3px; border-radius: 1px; }"
     },
     {
       "name": "Text Link",
@@ -130,7 +130,8 @@
       "Ten-step OKLCH scales with fixed step roles: 1-3 backgrounds, 4-6 borders, 7-8 solid fills, 9 secondary text, 10 primary text.",
       "Schedules (number or margin-column label, value beside it, hairline rows) as the universal content pattern.",
       "Square corners, 1px rules, no shadows.",
-      "Every state survives greyscale; a site-wide greyscale toggle lets any visitor check."
+      "Two themes from one set of roles: dark graphite (the default world) and light drafting paper, switched with a circular reveal.",
+      "Every state survives greyscale in both themes."
     ],
     "rules": [
       { "name": "The Lightness Carries Meaning Rule", "body": "Every state (current page, current section, link, hover, pressed, active) must be distinguishable in greyscale. A state change moves lightness, weight, length, underline or stroke width; hue alone never carries it.", "section": "colors" },
@@ -143,7 +144,7 @@
     ],
     "dos": [
       "Do frame every page as one sheet: inset border in strong rule, drafting grid, register at the head, title block at the foot with the route's drawing number.",
-      "Do carry every state by lightness, weight, length, underline or stroke width so it survives the greyscale toggle.",
+      "Do carry every state by lightness, weight, length, underline or stroke width so it survives greyscale in both themes.",
       "Do pair signal yellow with a second cue every time it appears.",
       "Do pick colours by step role (1-3 backgrounds, 4-6 borders, 7-8 solids, 9 secondary text, 10 primary text).",
       "Do pair every category colour with its fixed shape, and every status with its shape and words.",
