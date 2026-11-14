@@ -23,7 +23,7 @@ const published: z.input<typeof experienceSchema> = {
 			start: '2025-03',
 			end: '2026-09',
 			summary:
-				'Making use of Laravel, Filament, React, React Native, TypeScript and a plethora of other technologies to develop and maintain high-quality applications.',
+				'Oversaw the successful completion and maintenance of projects for both clients and internal use cases. Provided guidance for developers, and delivered high-quality, high-availability, cloud-based solutions.',
 		},
 		{
 			title: 'Mid-Level Software Developer',
