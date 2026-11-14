@@ -28,5 +28,7 @@ declare module '@tanstack/react-router' {
 	interface StaticDataRouteOption {
 		/** Drawing identity shown in the sheet's title block. */
 		sheet?: { number: string; title: string }
+		/** The page shows its own title block on lg, so the footer hides there. */
+		titleBlockInPage?: boolean
 	}
 }

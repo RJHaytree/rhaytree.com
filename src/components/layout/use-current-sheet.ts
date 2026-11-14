@@ -43,3 +43,9 @@ export function useCurrentSheet(): Sheet {
 
 	return notFoundSheet
 }
+
+/** Whether the current page renders its own title block (so the footer stands down). */
+export function useTitleBlockInPage(): boolean {
+	const matches = useMatches()
+	return matches.some((match) => match.staticData.titleBlockInPage === true)
+}

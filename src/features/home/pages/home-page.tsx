@@ -34,7 +34,7 @@ export function HomePage({
 	return (
 		<Page.Root className="lg:pt-0">
 			<div className="lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-				<div className="lg:sticky lg:top-0 lg:flex lg:h-[calc(100svh-5.5rem)] lg:flex-col lg:justify-between lg:py-12 lg:pr-14">
+				<div className="lg:sticky lg:top-0 lg:flex lg:h-[calc(100svh-5.5rem)] lg:flex-col lg:justify-between lg:py-10 lg:pr-14">
 					<div>
 						<DimensionLine className="mb-6 max-w-[26rem]" />
 						<h1 className="letter-in text-[clamp(2.5rem,9vw,5.5rem)] leading-[0.95] font-semibold tracking-[-0.035em] whitespace-nowrap text-bright [font-stretch:115%] lg:text-[clamp(2.5rem,4.1vw,4rem)]">
@@ -48,7 +48,8 @@ export function HomePage({
 							tooling teams use to ship and run them securely.
 						</p>
 
-						<div className="mt-7 max-w-[26rem]">
+						{/* On short screens the sketch gives way so the column fits. */}
+						<div className="mt-7 max-w-[26rem] lg:[@media(max-height:860px)]:hidden">
 							<SystemSketch />
 						</div>
 
@@ -57,18 +58,27 @@ export function HomePage({
 						</div>
 					</div>
 
-					<ul className="m-0 mt-10 flex list-none flex-wrap gap-x-6 gap-y-2 p-0 lg:mt-0">
-						<li>
-							<Anchor href="mailto:rjhaytree@gmail.com">
-								Email
-							</Anchor>
-						</li>
-						<li>
-							<Anchor href="https://github.com/RJHaytree">
-								GitHub
-							</Anchor>
-						</li>
-					</ul>
+					{/* The home sheet's title block: the foot of the identity column,
+					    replacing the page footer on this sheet. */}
+					<footer id="contact" className="mt-10 lg:mt-0">
+						<h2 className="sr-only">Title block and contact</h2>
+						<TitleBlock.Root className="w-full max-w-[26rem]">
+							<TitleBlock.Row label="Drawing">
+								<span className="tabular-nums">RH-01</span>{' '}
+								<span className="text-muted">Home</span>
+							</TitleBlock.Row>
+							<TitleBlock.Row label="Email">
+								<Anchor href="mailto:rjhaytree@gmail.com">
+									rjhaytree@gmail.com
+								</Anchor>
+							</TitleBlock.Row>
+							<TitleBlock.Row label="GitHub">
+								<Anchor href="https://github.com/RJHaytree">
+									github.com/RJHaytree
+								</Anchor>
+							</TitleBlock.Row>
+						</TitleBlock.Root>
+					</footer>
 				</div>
 
 				<div className="mt-20 space-y-28 lg:mt-0 lg:border-l lg:border-rule lg:py-16 lg:pl-14">
