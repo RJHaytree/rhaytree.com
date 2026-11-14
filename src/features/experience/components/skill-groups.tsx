@@ -10,7 +10,7 @@ export function SkillGroups({ groups }: { groups: Array<SkillGroup> }) {
 					className="grid gap-x-10 gap-y-1 border-b border-rule py-4 md:grid-cols-[12rem_minmax(0,1fr)]"
 				>
 					<dt className="font-medium text-bright">{group.area}</dt>
-					<dd className="m-0 text-muted">
+					<dd className="m-0 max-w-[65ch] text-muted">
 						{group.skills.join(', ')}
 					</dd>
 				</div>

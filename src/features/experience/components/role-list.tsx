@@ -1,3 +1,4 @@
+import { TagList } from '#/components/ui/tag-list'
 import type { Role } from '../types/experience'
 
 // Fixed three-letter months: en-GB's Intl short form gives "Sept", which
@@ -136,6 +137,11 @@ export function RoleList({ roles }: { roles: Array<Role> }) {
 												)}
 											</ul>
 										) : null}
+										<TagList
+											tags={role.skills}
+											label={`Skills used as ${role.title}`}
+											className="mt-4"
+										/>
 									</li>
 								))}
 							</ol>

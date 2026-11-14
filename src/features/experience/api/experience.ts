@@ -14,6 +14,18 @@ const published: z.input<typeof experienceSchema> = {
 			start: '2026-09',
 			summary:
 				'An evolution of the lead role: helping drive technical decision-making across the organisation, and identifying greater opportunities for coordination and technical excellence.',
+			skills: [
+				'Technology leadership',
+				'Systems design',
+				'TypeScript',
+				'React Native',
+				'Laravel',
+				'PHP',
+				'Terraform',
+				'Microsoft Azure',
+				'AWS',
+				'Cyber security',
+			],
 		},
 		{
 			title: 'Lead Developer',
@@ -24,6 +36,22 @@ const published: z.input<typeof experienceSchema> = {
 			end: '2026-09',
 			summary:
 				'Oversaw the successful completion and maintenance of projects for both clients and internal use cases. Provided guidance for developers, and delivered high-quality, high-availability, cloud-based solutions.',
+			skills: [
+				'Project management',
+				'Time management',
+				'Quality assurance',
+				'Software development',
+				'Laravel',
+				'Filament',
+				'PHP',
+				'MySQL',
+				'TypeScript',
+				'JavaScript',
+				'React',
+				'React Native',
+				'Swift',
+				'Cyber security',
+			],
 		},
 		{
 			title: 'Mid-Level Software Developer',
@@ -33,7 +61,16 @@ const published: z.input<typeof experienceSchema> = {
 			start: '2024-03',
 			end: '2025-03',
 			summary:
-				'Making use of Laravel, Filament, React, React Native, TypeScript and a plethora of other technologies to develop and maintain high-quality applications.',
+				'Developed and maintained high-quality web and mobile applications, from Laravel and Filament back ends to React and React Native front ends, taking on a growing share of each project.',
+			skills: [
+				'TypeScript',
+				'React',
+				'React Native',
+				'Laravel',
+				'Filament',
+				'MySQL',
+				'Swift',
+			],
 		},
 		{
 			title: 'Junior Software Developer',
@@ -44,6 +81,15 @@ const published: z.input<typeof experienceSchema> = {
 			end: '2024-03',
 			summary:
 				'Making use of Laravel, React and React Native to build and support a plethora of development projects.',
+			skills: [
+				'Software development',
+				'PHP',
+				'Laravel',
+				'MySQL',
+				'JavaScript',
+				'React',
+				'React Native',
+			],
 		},
 		{
 			title: 'Lecturer in Computing',
@@ -60,29 +106,16 @@ const published: z.input<typeof experienceSchema> = {
 				'Supported students where needed and tailored lessons to their needs.',
 				'Worked with colleagues and management to keep lessons and assignments to a high standard.',
 			],
-		},
-	],
-	skillGroups: [
-		{
-			area: 'Languages and frameworks',
 			skills: [
-				'TypeScript',
-				'React',
-				'React Native',
-				'Laravel',
-				'Filament',
-			],
-		},
-		{
-			area: 'Leadership',
-			skills: [
-				'Technology leadership',
-				'Time management',
 				'Lesson planning',
+				'Time management',
+				'Quality assurance',
+				'Software development',
+				'Cyber security',
 			],
 		},
-		{ area: 'Security', skills: ['Cyber security'] },
 	],
+	skillGroups: [],
 }
 
 // Sample roles only fill in while no real ones exist, on the dev server and
@@ -90,11 +123,68 @@ const published: z.input<typeof experienceSchema> = {
 // time, so a normal production build tree-shakes the fixtures away.
 const includeFixtures = import.meta.env.DEV || import.meta.env.MODE === 'review'
 
-const experience: Experience = experienceSchema.parse(
+/**
+ * Where each skill sits in the Skills summary, in display order. The summary
+ * is built from the skills tagged on roles, so only skills actually used
+ * appear; anything not listed here falls into "Other".
+ */
+const skillAreas: Array<{ area: string; skills: Array<string> }> = [
+	{
+		area: 'Leadership and practice',
+		skills: [
+			'Technology leadership',
+			'Systems design',
+			'Project management',
+			'Time management',
+			'Quality assurance',
+			'Software development',
+			'Lesson planning',
+		],
+	},
+	{
+		area: 'Languages and frameworks',
+		skills: [
+			'TypeScript',
+			'JavaScript',
+			'PHP',
+			'Swift',
+			'React',
+			'React Native',
+			'Laravel',
+			'Filament',
+		],
+	},
+	{
+		area: 'Cloud and data',
+		skills: ['AWS', 'Microsoft Azure', 'Terraform', 'MySQL'],
+	},
+	{ area: 'Security', skills: ['Cyber security'] },
+]
+
+function summariseSkills(
+	roles: Experience['roles'],
+): Experience['skillGroups'] {
+	const used = new Set(roles.flatMap((role) => role.skills))
+	const placed = new Set(skillAreas.flatMap((group) => group.skills))
+	const groups = skillAreas.map((group) => ({
+		area: group.area,
+		skills: group.skills.filter((skill) => used.has(skill)),
+	}))
+	const other = [...used].filter((skill) => !placed.has(skill))
+	if (other.length > 0) groups.push({ area: 'Other', skills: other })
+	return groups.filter((group) => group.skills.length > 0)
+}
+
+const parsed: Experience = experienceSchema.parse(
 	includeFixtures && published.roles.length === 0
 		? experienceFixture
 		: published,
 )
+
+const experience: Experience =
+	parsed.skillGroups.length > 0
+		? parsed
+		: { ...parsed, skillGroups: summariseSkills(parsed.roles) }
 
 export async function getExperience(): Promise<Experience> {
 	return experience

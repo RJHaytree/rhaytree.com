@@ -15,6 +15,8 @@ export const roleSchema = z.object({
 	end: yearMonth.optional(),
 	summary: z.string().min(1),
 	highlights: z.array(z.string().min(1)).default([]),
+	/** Skills and technologies used in the role, shown as tags. */
+	skills: z.array(z.string().min(1)).default([]),
 })
 
 export const skillGroupSchema = z.object({
