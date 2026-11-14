@@ -21,6 +21,7 @@ const published: z.input<typeof experienceSchema> = {
 			location: 'Birmingham, UK',
 			arrangement: 'Remote',
 			start: '2025-03',
+			end: '2026-09',
 			summary:
 				'Making use of Laravel, Filament, React, React Native, TypeScript and a plethora of other technologies to develop and maintain high-quality applications.',
 		},
