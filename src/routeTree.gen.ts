@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as WorkIndexRouteImport } from './routes/work/index'
 import { Route as WorkSlugRouteImport } from './routes/work/$slug'
@@ -17,6 +18,11 @@ import { Route as WorkSlugRouteImport } from './routes/work/$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignSystemRoute = DesignSystemRouteImport.update({
+  id: '/design-system',
+  path: '/design-system',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienceRoute = ExperienceRouteImport.update({
@@ -37,12 +43,14 @@ const WorkSlugRoute = WorkSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/design-system': typeof DesignSystemRoute
   '/experience': typeof ExperienceRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/design-system': typeof DesignSystemRoute
   '/experience': typeof ExperienceRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work': typeof WorkIndexRoute
@@ -50,20 +58,28 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/design-system': typeof DesignSystemRoute
   '/experience': typeof ExperienceRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/experience' | '/work/$slug' | '/work/'
+  fullPaths: '/' | '/design-system' | '/experience' | '/work/$slug' | '/work/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/experience' | '/work/$slug' | '/work'
-  id: '__root__' | '/' | '/experience' | '/work/$slug' | '/work/'
+  to: '/' | '/design-system' | '/experience' | '/work/$slug' | '/work'
+  id:
+    | '__root__'
+    | '/'
+    | '/design-system'
+    | '/experience'
+    | '/work/$slug'
+    | '/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DesignSystemRoute: typeof DesignSystemRoute
   ExperienceRoute: typeof ExperienceRoute
   WorkSlugRoute: typeof WorkSlugRoute
   WorkIndexRoute: typeof WorkIndexRoute
@@ -76,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design-system': {
+      id: '/design-system'
+      path: '/design-system'
+      fullPath: '/design-system'
+      preLoaderRoute: typeof DesignSystemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experience': {
@@ -104,6 +127,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DesignSystemRoute: DesignSystemRoute,
   ExperienceRoute: ExperienceRoute,
   WorkSlugRoute: WorkSlugRoute,
   WorkIndexRoute: WorkIndexRoute,
