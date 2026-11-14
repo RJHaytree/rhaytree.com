@@ -60,7 +60,7 @@
   },
   "intent": {
     "skills": [
-      "*"
+      "@tanstack/*"
     ]
   }
 }
