@@ -8,10 +8,10 @@ import {
 	Scripts,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import { reactQueryDevtools } from '#/lib/react-query'
 import { NotFoundPage } from '../components/layout/not-found-page'
 import { SiteLayout } from '../components/layout/site-layout'
 import { greyscaleBootScript } from '../components/ui/greyscale-toggle'
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 import appCss from '../styles.css?url'
 
 interface MyRouterContext {
@@ -63,7 +63,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 							name: 'Tanstack Router',
 							render: <TanStackRouterDevtoolsPanel />,
 						},
-						TanStackQueryDevtools,
+						reactQueryDevtools,
 					]}
 				/>
 				<Scripts />
