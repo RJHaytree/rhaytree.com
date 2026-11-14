@@ -116,20 +116,35 @@
 	transition: fill 200ms var(--ease-draft);
 }
 
-/* Runtime notes under a part's label: smaller and narrower. */
-.system-drawing .drawing-part text.drawing-note {
-	font-size: 11.5px;
-	font-stretch: 87.5%;
+/*
+ * Area-of-practice diagrams (viewBox units). Labels grow on phones, where the
+ * diagram renders narrower, so they stay legible at every width.
+ */
+.system-drawing.diagram .drawing-part text {
+	font-size: 16px;
+}
+
+.system-drawing.diagram .drawing-part text.drawing-note {
+	font-size: 13px;
 	letter-spacing: 0.01em;
 }
 
-.system-drawing.drawing-compact .drawing-part text.drawing-note {
-	font-size: 13px;
+.system-drawing.diagram .drawing-part text.drawing-frame-label {
+	font-size: 14px;
 }
 
-/* The phone variant's labels render at roughly their own size. */
-.system-drawing.drawing-compact .drawing-part text {
-	font-size: 16px;
+@media (max-width: 639px) {
+	.system-drawing.diagram .drawing-part text {
+		font-size: 20px;
+	}
+
+	.system-drawing.diagram .drawing-part text.drawing-note {
+		font-size: 16px;
+	}
+
+	.system-drawing.diagram .drawing-part text.drawing-frame-label {
+		font-size: 17px;
+	}
 }
 
 @media (prefers-reduced-motion: no-preference) {

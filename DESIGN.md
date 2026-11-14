@@ -118,7 +118,7 @@ Motion is drafting motion. The name is lettered narrow to wide on the width axis
 A strictly neutral graphite ladder, ordered by lightness, with one yellow for live elements.
 
 ### Primary
-- **Drafting Highlighter** (signal): the one accent. Used only for live state: the traced part of the system drawing, the active entry in the drawing key, and the leader line on a register row under hover or focus. Never decorative, never for static emphasis, never for links at rest.
+- **Drafting Highlighter** (signal): the one accent. Used only for live state: the focal layer of the active practice diagram, the leader beside the active practice step, and the leader line on a register row under hover or focus. Never decorative, never for static emphasis, never for links at rest.
 
 ### Neutral
 - **Black Ground** (ground): the page behind the sheet, the scrollbar track, and the text colour on inverted selections and the skip link.
@@ -126,7 +126,7 @@ A strictly neutral graphite ladder, ordered by lightness, with one yellow for li
 - **Grid Line** (grid): the 48px drafting grid only. Barely visible by design.
 - **Hairline Rule** (rule): row dividers in schedules, section rules, the register's lower edge.
 - **Strong Rule** (rule-strong): the sheet border, title block border, dimension lines, link underlines at rest, list markers, scrollbar thumb.
-- **Drawing Stroke** (drawing-stroke): resting strokes of the system drawing.
+- **Drawing Stroke** (drawing-stroke): resting strokes of the practice diagrams.
 - **Muted Graphite** (muted): secondary text: leads, descriptions, labels, register entries at rest, captions.
 - **Ink** (ink): body text.
 - **White** (bright): emphasis: headings, the name, current register entry, link text, focus ring, selection background.
@@ -161,9 +161,9 @@ A strictly neutral graphite ladder, ordered by lightness, with one yellow for li
 
 The sheet is inset from the viewport by 8px, 16px and 24px at small, sm and lg widths, and fills at least the remaining viewport height. Inside it, page gutters are 20px, 32px and 40px. Sections are separated by 96px and each opens with a full-width hairline rule that draws left to right as it scrolls in.
 
-Schedules are the grid: a fixed margin column (12rem for notes, roles and skills; 11rem for the drawing key; 6.5rem for references and title block labels, 7.5rem from sm) with the value in a fluid column beside it. Below md they stack. Rows are divided by hairlines; long rows pad 28px vertically, compact rows 10px.
+Schedules are the grid: a fixed margin column (12rem for notes, roles and skills; 6.5rem for references and title block labels, 7.5rem from sm) with the value in a fluid column beside it. Below md they stack. Rows are divided by hairlines; long rows pad 28px vertically, compact rows 10px.
 
-The home sheet runs two columns at lg (1.1fr text, 1fr drawing). Below lg the column wrappers dissolve so the drawing sits between the positioning and its key, and the drawing sticks to the top of the viewport on a sheet-coloured band so a tapped key entry's trace stays visible. The title block sits flush to the sheet's right edge. Breakpoints are Tailwind defaults (sm 640px, md 768px, lg 1024px).
+The home sheet opens with the name and positioning beside the title block, which sits flush to the sheet's right edge. The Areas of practice section then splits at lg into steps (1fr) and a sticky diagram stage (1.15fr); below lg it is a single column with each diagram inline. Breakpoints are Tailwind defaults (sm 640px, md 768px, lg 1024px).
 
 ## Elevation & Depth
 
@@ -199,8 +199,8 @@ Square chips with a hairline border, muted 0.9375rem text, 2px by 10px padding, 
 ### Dimension Line
 A decorative horizontal strong-rule line with end ticks that measures the width of the heading block above which it sits. Draws in from the left on load.
 
-### Practice Map (signature)
-A compound component (Provider, Key, Drawing) pairing the areas of practice with an authored, generic reference-architecture drawing. Hovering or focusing a key entry previews its part; clicking or tapping pins it. The active part turns signal yellow at 2.25 stroke with semibold labels, every other part dims to 25% opacity, and the key entry turns yellow with a 2px underline. Key text never dims. The drawing has full (600 by 440) and compact phone variants and is always captioned as illustrative, not a client or employer system.
+### Practice Tour (signature)
+A compound component (Provider, Steps, Stage) that walks through the seven areas of practice. At lg the section splits in two: numbered steps on the left (each at least 52vh tall), and a sticky stage on the right showing one focused diagram per area. A step becomes active as it crosses the middle of the viewport; its heading brightens and a 2px signal leader draws beside its number, and the stage remounts the matching diagram so it draws itself in. The stage caption reads "NN of 07: area" plus the illustrative note. Below lg there is no stage: each step shows its own diagram inline. Each diagram (480 by 360 viewBox, labels 16 units, 20 below 640px) is a simple generic illustration with one focal layer in signal yellow at 2.25 stroke and semibold labels, and is always captioned as illustrative, not a client or employer system.
 
 ## Do's and Don'ts
 

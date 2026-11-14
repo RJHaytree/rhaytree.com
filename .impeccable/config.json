@@ -54,6 +54,15 @@
         ],
         "createdAt": "2026-11-14T19:23:31.912Z",
         "reason": "Agent: 1px radius softens the focus-visible outline corners only; surfaces stay square"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "14px",
+        "files": [
+          "src/styles.css"
+        ],
+        "createdAt": "2026-11-14T19:29:21.142Z",
+        "reason": "Agent: diagram frame-label size in SVG viewBox units, which scale with the diagram; not page type"
       }
     ]
   }
