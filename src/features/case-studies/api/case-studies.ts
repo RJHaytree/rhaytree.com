@@ -1,12 +1,17 @@
 import { z } from 'zod'
 
 import { caseStudySchema } from '../types/case-study'
+import { caseStudyFixtures } from './case-studies.fixtures'
 import type { CaseStudy } from '../types/case-study'
 
-// Empty until case studies are written and cleared under NDA.
-// This module is the single source, so it can move to D1 later without
-// touching pages or routes.
-const caseStudies: Array<CaseStudy> = z.array(caseStudySchema).parse([])
+// Real case studies go here once written and cleared under NDA.
+const published: Array<z.input<typeof caseStudySchema>> = []
+
+// The dev server uses fixtures; production builds only ever see `published`
+// (import.meta.env.DEV is false at build time, so fixtures are tree-shaken).
+const caseStudies: Array<CaseStudy> = z
+  .array(caseStudySchema)
+  .parse(import.meta.env.DEV ? caseStudyFixtures : published)
 
 export async function listCaseStudies(): Promise<Array<CaseStudy>> {
   return caseStudies
