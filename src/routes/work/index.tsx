@@ -4,9 +4,9 @@ import { listCaseStudies } from '#/features/case-studies/api/case-studies'
 import { WorkPage } from '#/features/case-studies/pages/work-page'
 
 export const Route = createFileRoute('/work/')({
-  head: () => ({ meta: [{ title: 'Work | Ryan Haytree' }] }),
-  loader: () => listCaseStudies(),
-  component: function WorkRoute() {
-    return <WorkPage studies={Route.useLoaderData()} />
-  },
+	head: () => ({ meta: [{ title: 'Work | Ryan Haytree' }] }),
+	loader: () => listCaseStudies(),
+	component: function WorkRoute() {
+		return <WorkPage studies={Route.useLoaderData()} />
+	},
 })

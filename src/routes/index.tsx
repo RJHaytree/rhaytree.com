@@ -4,8 +4,8 @@ import { listFeaturedCaseStudies } from '#/features/case-studies/api/case-studie
 import { HomePage } from '#/features/home/pages/home-page'
 
 export const Route = createFileRoute('/')({
-  loader: () => listFeaturedCaseStudies(),
-  component: function HomeRoute() {
-    return <HomePage featured={Route.useLoaderData()} />
-  },
+	loader: () => listFeaturedCaseStudies(),
+	component: function HomeRoute() {
+		return <HomePage featured={Route.useLoaderData()} />
+	},
 })
