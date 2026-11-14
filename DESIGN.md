@@ -163,7 +163,7 @@ The sheet is inset from the viewport by 8px, 16px and 24px at small, sm and lg w
 
 Schedules are the grid: a fixed margin column (12rem for notes, roles and skills; 6.5rem for references and title block labels, 7.5rem from sm) with the value in a fluid column beside it. Below md they stack. Rows are divided by hairlines; long rows pad 28px vertically, compact rows 10px.
 
-The home sheet opens with the name and positioning beside the title block, which sits flush to the sheet's right edge. The Areas of practice section then splits at lg into steps (1fr) and a sticky diagram stage (1.15fr); below lg it is a single column with each diagram inline. Breakpoints are Tailwind defaults (sm 640px, md 768px, lg 1024px).
+At lg the home sheet splits down the middle from the top: the name, positioning and Areas of practice steps fill the left half, and the sticky diagram stage fills the right half from the first viewport, pinned 2rem from the top. A full-height 1px rule divides the halves and meets the sheet register. Below lg it is a single column with each diagram inline. Breakpoints are Tailwind defaults (sm 640px, md 768px, lg 1024px).
 
 ## Elevation & Depth
 
@@ -200,7 +200,7 @@ Square chips with a hairline border, muted 0.9375rem text, 2px by 10px padding, 
 A decorative horizontal strong-rule line with end ticks that measures the width of the heading block above which it sits. Draws in from the left on load.
 
 ### Practice Tour (signature)
-A compound component (Provider, Steps, Stage) that walks through the seven areas of practice. At lg the section splits in two: numbered steps on the left (each at least 52vh tall), and a sticky stage on the right showing one focused diagram per area. A step becomes active as it crosses the middle of the viewport; its heading brightens and a 2px signal leader draws beside its number, and the stage remounts the matching diagram so it draws itself in. The stage caption reads "NN of 07: area" plus the illustrative note. Below lg there is no stage: each step shows its own diagram inline. Each diagram (480 by 360 viewBox, labels 16 units, 20 below 640px) is a simple generic illustration with one focal layer in signal yellow at 2.25 stroke and semibold labels, and is always captioned as illustrative, not a client or employer system.
+A compound component (Provider, Steps, Stage) that walks through the seven areas of practice. At lg the sheet splits in two from the top: numbered steps on the left (each at least 48vh tall, text at the top), and a sticky stage on the right showing one focused diagram per area. A step becomes active as it crosses a line a third of the way down the viewport; its heading brightens and a 2px signal leader draws beside its number, and the stage remounts the matching diagram so it draws itself in. The stage caption reads "NN of 07: area" plus the illustrative note. Below lg there is no stage: each step shows its own diagram inline. Each diagram (480 by 360 viewBox, labels 16 units, 20 below 640px) is a simple generic illustration with one focal layer in signal yellow at 2.25 stroke and semibold labels, and is always captioned as illustrative, not a client or employer system.
 
 ## Do's and Don'ts
 
