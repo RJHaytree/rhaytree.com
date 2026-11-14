@@ -9,6 +9,11 @@ const areas = [
 		detail: 'Defining how systems and services fit together before they are built.',
 	},
 	{
+		id: 'data-integration',
+		name: 'Data integration',
+		detail: 'Bringing data from many sources and protocols into one consistent system.',
+	},
+	{
 		id: 'cloud-planning',
 		name: 'Cloud planning',
 		detail: 'Planning large cloud projects that span many integrated systems.',
@@ -170,13 +175,19 @@ function Box({
 	w,
 	h,
 	label,
+	note,
 }: {
 	x: number
 	y: number
 	w: number
 	h: number
 	label?: string
+	/** A smaller second line, e.g. the runtime the part runs on. */
+	note?: string
 }) {
+	const cx = x + w / 2
+	const cy = y + h / 2
+
 	return (
 		<>
 			<rect
@@ -187,8 +198,22 @@ function Box({
 				pathLength={1}
 				className="draw-stroke"
 			/>
-			{label ? (
-				<text x={x + w / 2} y={y + h / 2 + 5} textAnchor="middle">
+			{label && note ? (
+				<>
+					<text x={cx} y={cy - 1} textAnchor="middle">
+						{label}
+					</text>
+					<text
+						x={cx}
+						y={cy + 13}
+						textAnchor="middle"
+						className="drawing-note"
+					>
+						{note}
+					</text>
+				</>
+			) : label ? (
+				<text x={cx} y={cy + 5} textAnchor="middle">
 					{label}
 				</text>
 			) : null}
@@ -197,7 +222,7 @@ function Box({
 }
 
 const drawingDescription =
-	'Clients reach services through an edge firewall and an API gateway. Services, a queue and a database are spread across two zones of a cloud region inside a security perimeter, with the database replicated between zones. A code repository feeds a deploy pipeline through a review gate, and Terraform defines the infrastructure.'
+	'Data arrives from many sources through HTTP, MQTT, IBM MQ, SMTP and other receivers running on Kubernetes, merges onto a queue and is consolidated by serverless functions, then stored in a managed database and a cache inside a cloud region and security perimeter. A serving API on container apps reads from both and reaches consumers through an edge firewall. A code repository feeds a deploy pipeline through a review gate, and Terraform defines the infrastructure.'
 
 /** The SVG frame shared by both drawing variants: labelled, traceable. */
 function DrawingFrame({
@@ -220,89 +245,120 @@ function DrawingFrame({
 			className={cn('system-drawing h-auto w-full', className)}
 			fill="none"
 		>
-			<title id={titleId}>Illustrative reference architecture</title>
+			<title id={titleId}>
+				Illustrative data integration architecture
+			</title>
 			<desc id={descId}>{drawingDescription}</desc>
 			{children}
 		</svg>
 	)
 }
 
+const adapters = ['HTTP', 'MQTT', 'IBM MQ', 'SMTP', 'Other'] as const
+
 /**
- * The phone variant: the same reference architecture in a narrow layout with
- * fewer, larger parts, so its labels stay legible at phone width.
+ * The phone variant: the same data flow arranged top to bottom with fewer,
+ * larger parts, so its labels stay legible at phone width.
  */
 function CompactDrawing() {
 	return (
 		<DrawingFrame
-			viewBox="0 0 340 360"
-			className="drawing-compact mx-auto max-h-[42svh] sm:hidden"
+			viewBox="0 0 340 480"
+			className="drawing-compact mx-auto max-h-[46svh] sm:hidden"
 		>
 			<Part area="architecture" delay={0}>
-				<Box x={4} y={4} w={332} h={352} />
-				<text x={14} y={346}>
+				<Box x={4} y={4} w={332} h={472} />
+				<text x={14} y={466}>
 					System boundary
 				</text>
 			</Part>
 
 			<Part area="cloud-planning" delay={150}>
-				<Box x={122} y={68} w={202} h={244} />
-				<text x={130} y={86}>
+				<Box x={20} y={90} w={300} h={226} />
+				<text x={28} y={108}>
 					Region
-				</text>
-				<Box x={130} y={94} w={90} h={210} />
-				<text x={137} y={112}>
-					Zone A
-				</text>
-				<Box x={228} y={94} w={90} h={210} />
-				<text x={235} y={112}>
-					Zone B
 				</text>
 			</Part>
 
-			<Part area="security" delay={300}>
-				<Box x={122} y={14} w={96} h={32} label="Edge / WAF" />
+			<Part area="data-integration" delay={300}>
+				<Box x={8} y={8} w={324} h={56} />
+				<text x={16} y={25}>
+					Kubernetes
+				</text>
+				{adapters.map((name, index) => (
+					<Box
+						key={name}
+						x={12 + index * 64}
+						y={32}
+						w={58}
+						h={26}
+						label={name}
+					/>
+				))}
+				<Stroke d="M41 58 V70 M105 58 V70 M169 58 V70 M233 58 V70 M297 58 V70 M41 70 H297" />
+				<Stroke d="M95 70 V116 M89 110 L95 116 L101 110" />
+				<Stroke d="M150 132 H190 M184 126 L190 132 L184 138" />
+				<Box
+					x={190}
+					y={112}
+					w={120}
+					h={40}
+					label="Consolidate"
+					note="functions"
+				/>
+			</Part>
+
+			<Part area="security" delay={450}>
 				<rect
-					x={114}
-					y={60}
-					width={218}
-					height={260}
+					x={12}
+					y={82}
+					width={316}
+					height={244}
 					strokeDasharray="6 5"
 					className="draw-fade"
 				/>
-				<text x={326} y={334} textAnchor="end">
-					Perimeter
-				</text>
+				<Box x={115} y={278} w={110} h={32} label="Edge / WAF" />
 			</Part>
 
-			<Part area="platform-tooling" delay={450}>
-				<Box x={12} y={70} w={96} h={32} label="Repo" />
-				<Stroke d="M60 102 V110" />
-				<Box x={12} y={154} w={96} h={32} label="Pipeline" />
-				<Stroke d="M108 170 H130 M124 164 L130 170 L124 176" />
+			<Part area="platform-tooling" delay={600}>
+				<Box x={10} y={404} w={74} h={30} label="Repo" />
+				<Box x={118} y={404} w={92} h={30} label="Pipeline" />
+				<Stroke d="M196 404 V316 M190 322 L196 316 L202 322" />
 			</Part>
 
-			<Part area="code-review" delay={600}>
-				<Stroke d="M60 110 L76 126 L60 142 L44 126 Z" />
-				<Stroke d="M60 142 V154 M54 148 L60 154 L66 148" />
+			<Part area="code-review" delay={750}>
+				<Stroke d="M84 419 H90 L101 408 L112 419 L101 430 L90 419 M112 419 H118" />
 			</Part>
 
-			<Part area="iac" delay={750}>
-				<Box x={12} y={232} w={96} h={32} label="Terraform" />
-				<Stroke d="M108 248 H122 M116 242 L122 248 L116 254" />
+			<Part area="iac" delay={900}>
+				<Box x={232} y={404} w={98} h={30} label="Terraform" />
+				<Stroke d="M281 404 V316 M275 322 L281 316 L287 322" />
 			</Part>
 
-			<Part area="architecture" delay={900}>
-				<Box x={12} y={14} w={96} h={32} label="Clients" />
-				<Stroke d="M108 30 H122 M116 24 L122 30 L116 36" />
-				<Stroke d="M218 30 H234 M228 24 L234 30 L228 36" />
-				<Box x={234} y={14} w={94} h={32} label="Gateway" />
-				<Stroke d="M281 46 V124 M275 118 L281 124 L287 118 M281 54 H175 V124 M169 118 L175 124 L181 118" />
-				<Box x={136} y={124} w={78} h={32} label="Service" />
-				<Box x={234} y={124} w={78} h={32} label="Service" />
-				<Box x={136} y={252} w={78} h={32} label="Data" />
-				<Box x={234} y={252} w={78} h={32} label="Replica" />
-				<Stroke d="M175 156 V252 M273 156 V252" />
-				<Stroke d="M214 268 H234 M228 262 L234 268 L228 274" />
+			<Part area="architecture" delay={1050}>
+				<Box x={40} y={116} w={110} h={32} label="Queue" />
+				<Stroke d="M250 152 V170 M244 164 L250 170 L256 164 M250 160 H95 V170 M89 164 L95 170 L101 164" />
+				<Box x={40} y={170} w={110} h={40} label="Cache" />
+				<Box
+					x={190}
+					y={170}
+					w={120}
+					h={40}
+					label="Database"
+					note="managed"
+				/>
+				<Stroke d="M95 210 V222 H170 V230 M250 210 V222 H170 M164 224 L170 230 L176 224" />
+				<Box
+					x={105}
+					y={230}
+					w={130}
+					h={40}
+					label="Serving API"
+					note="container apps"
+				/>
+				<Stroke d="M170 270 V278" />
+				<Stroke d="M170 310 V330 H72 V350 M66 344 L72 350 L78 344" />
+				<Box x={12} y={350} w={120} h={32} label="Consumers" />
 			</Part>
 		</DrawingFrame>
 	)
@@ -324,8 +380,9 @@ function PracticeMapDrawing() {
 }
 
 /**
- * An illustrative reference architecture, drawn as an engineering schematic.
- * Deliberately generic: it describes no client or employer system.
+ * An illustrative data integration architecture, drawn as an engineering
+ * schematic: many protocols in, consolidated, stored and served. Deliberately
+ * generic: it describes no client or employer system.
  */
 function FullDrawing() {
 	return (
@@ -338,70 +395,97 @@ function FullDrawing() {
 			</Part>
 
 			<Part area="cloud-planning" delay={150}>
-				<Box x={170} y={100} w={406} h={300} />
-				<text x={182} y={120}>
+				<Box x={150} y={62} w={412} h={234} />
+				<text x={162} y={82}>
 					Cloud region
-				</text>
-				<Box x={186} y={132} w={180} h={252} />
-				<text x={198} y={152}>
-					Zone A
-				</text>
-				<Box x={382} y={132} w={180} h={252} />
-				<text x={394} y={152}>
-					Zone B
 				</text>
 			</Part>
 
-			<Part area="security" delay={300}>
-				<Box x={316} y={28} w={112} h={36} label="Edge / WAF" />
+			<Part area="data-integration" delay={300}>
+				<Box x={16} y={46} w={100} h={194} />
+				<text x={24} y={63}>
+					Kubernetes
+				</text>
+				{adapters.map((name, index) => (
+					<Box
+						key={name}
+						x={24}
+						y={72 + index * 32}
+						w={84}
+						h={26}
+						label={name}
+					/>
+				))}
+				<Stroke d="M108 85 H128 M108 117 H128 M108 149 H128 M108 181 H128 M108 213 H128 M128 85 V213" />
+				<Stroke d="M128 148 H160 M154 142 L160 148 L154 154" />
+				<Stroke d="M250 148 H276 M270 142 L276 148 L270 154" />
+				<Box
+					x={276}
+					y={126}
+					w={110}
+					h={44}
+					label="Consolidate"
+					note="functions"
+				/>
+			</Part>
+
+			<Part area="security" delay={450}>
 				<rect
-					x={160}
-					y={90}
-					width={426}
-					height={320}
+					x={140}
+					y={52}
+					width={432}
+					height={254}
 					strokeDasharray="6 5"
 					className="draw-fade"
 				/>
-				<text x={578} y={426} textAnchor="end">
+				<text x={572} y={322} textAnchor="end">
 					Security perimeter
 				</text>
+				<Box x={276} y={250} w={96} h={36} label="Edge / WAF" />
 			</Part>
 
-			<Part area="platform-tooling" delay={450}>
-				<Box x={24} y={120} w={116} h={36} label="Code repository" />
-				<Stroke d="M82 156 V172" />
-				<Box x={24} y={214} w={116} h={36} label="Pipeline" />
-				<Stroke d="M140 232 H206 M200 226 L206 232 L200 238" />
+			<Part area="platform-tooling" delay={600}>
+				<Box x={150} y={344} w={116} h={32} label="Code repository" />
+				<Box x={320} y={344} w={96} h={32} label="Pipeline" />
+				<Stroke d="M368 344 V296 M362 302 L368 296 L374 302" />
 			</Part>
 
-			<Part area="code-review" delay={600}>
-				<Stroke d="M82 172 L95 185 L82 198 L69 185 Z" />
-				<Stroke d="M82 198 V214 M76 208 L82 214 L88 208" />
-				<text x={102} y={190}>
+			<Part area="code-review" delay={750}>
+				<Stroke d="M266 360 H277 M290 347 L303 360 L290 373 L277 360 Z M303 360 H320 M314 354 L320 360 L314 366" />
+				<text x={290} y={394} textAnchor="middle">
 					Review
 				</text>
 			</Part>
 
-			<Part area="iac" delay={750}>
-				<Box x={24} y={300} w={116} h={36} label="Terraform" />
-				<Stroke d="M140 318 H186 M180 312 L186 318 L180 324" />
+			<Part area="iac" delay={900}>
+				<Box x={444} y={344} w={104} h={32} label="Terraform" />
+				<Stroke d="M496 344 V296 M490 302 L496 296 L502 302" />
 			</Part>
 
-			<Part area="architecture" delay={900}>
-				<Box x={176} y={28} w={104} h={36} label="Clients" />
-				<Stroke d="M280 46 H316 M310 40 L316 46 L310 52" />
-				<Stroke d="M428 46 H464 M458 40 L464 46 L458 52" />
-				<Box x={464} y={28} w={112} h={36} label="API gateway" />
-				<Stroke d="M520 64 V116 H276 V168 M270 162 L276 168 L282 162 M472 116 V168 M466 162 L472 168 L478 162" />
-				<Box x={206} y={168} w={140} h={32} label="Service" />
-				<Box x={206} y={216} w={140} h={32} label="Service" />
-				<Box x={206} y={330} w={140} h={36} label="Database" />
-				<Stroke d="M276 200 V216 M276 248 V330" />
-				<Box x={402} y={168} w={140} h={32} label="Service" />
-				<Box x={402} y={216} w={140} h={32} label="Queue" />
-				<Box x={402} y={330} w={140} h={36} label="Replica" />
-				<Stroke d="M472 200 V216 M472 248 V330" />
-				<Stroke d="M346 348 H402 M396 342 L402 348 L396 354" />
+			<Part area="architecture" delay={1050}>
+				<Box x={160} y={130} w={90} h={36} label="Queue" />
+				<Stroke d="M386 148 H400 V116 H412 M406 110 L412 116 L406 122 M400 148 V180 H412 M406 174 L412 180 L406 186" />
+				<Box
+					x={412}
+					y={94}
+					w={128}
+					h={44}
+					label="Database"
+					note="managed"
+				/>
+				<Box x={412} y={158} w={128} h={44} label="Cache" />
+				<Stroke d="M476 202 V246 M470 240 L476 246 L482 240 M540 116 H552 V268 H540 M546 262 L540 268 L546 274" />
+				<Box
+					x={412}
+					y={246}
+					w={128}
+					h={44}
+					label="Serving API"
+					note="container apps"
+				/>
+				<Stroke d="M412 268 H372 M378 262 L372 268 L378 274" />
+				<Stroke d="M276 268 H108 M114 262 L108 268 L114 274" />
+				<Box x={24} y={250} w={84} h={36} label="Consumers" />
 			</Part>
 		</DrawingFrame>
 	)

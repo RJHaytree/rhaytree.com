@@ -1,22 +1,60 @@
 {
-	"hook": {
-		"enabled": true,
-		"limits": {
-			"maxFindings": 5,
-			"maxChars": 8000
-		}
-	},
-	"detector": {
-		"ignoreRules": [],
-		"ignoreFiles": [],
-		"ignoreValues": [
-			{
-				"rule": "codex-grid-background",
-				"value": "*",
-				"files": ["src/styles.css"],
-				"createdAt": "2026-11-14T18:41:12.773Z",
-				"reason": "Agent: the drafting grid is the engineering-drawing sheet of the user-chosen Drawing Office world (a blueprint surface), not decoration"
-			}
-		]
-	}
+  "hook": {
+    "enabled": true,
+    "limits": {
+      "maxFindings": 5,
+      "maxChars": 8000
+    }
+  },
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/styles.css"
+        ],
+        "createdAt": "2026-11-14T18:41:12.773Z",
+        "reason": "Agent: the drafting grid is the engineering-drawing sheet of the user-chosen Drawing Office world (a blueprint surface), not decoration"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "13px",
+        "files": [
+          "src/styles.css"
+        ],
+        "createdAt": "2026-11-14T19:23:31.730Z",
+        "reason": "Agent: SVG label sizes in the system drawing's viewBox units, which scale with the drawing; not page type"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "11.5px",
+        "files": [
+          "src/styles.css"
+        ],
+        "createdAt": "2026-11-14T19:23:31.789Z",
+        "reason": "Agent: SVG label sizes in the system drawing's viewBox units, which scale with the drawing; not page type"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "16px",
+        "files": [
+          "src/styles.css"
+        ],
+        "createdAt": "2026-11-14T19:23:31.847Z",
+        "reason": "Agent: SVG label sizes in the system drawing's viewBox units, which scale with the drawing; not page type"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "1px",
+        "files": [
+          "src/styles.css"
+        ],
+        "createdAt": "2026-11-14T19:23:31.912Z",
+        "reason": "Agent: 1px radius softens the focus-visible outline corners only; surfaces stay square"
+      }
+    ]
+  }
 }
