@@ -2,7 +2,7 @@ import { CopyButton } from './copy-button'
 import { Anchor } from './text-link'
 
 /** The site's contact address. */
-export const contactEmail = 'rjhaytree@gmail.com'
+export const contactEmail = 'hello@rhaytree.com'
 
 /**
  * The email address as a link, with a copy button beside it for visitors
