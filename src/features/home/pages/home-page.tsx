@@ -91,11 +91,14 @@ export function HomePage({
 									I'm a senior lead engineer at Scorchsoft, a
 									software agency, where I build low-latency,
 									low-downtime cloud systems and lead the
-									developers who work on them. Most of my role
+									developers who work on them. Much of my role
 									is now infrastructure: designing and running
 									these systems on AWS and Azure, defined in
 									Terraform and built on cloud-native
-									services.
+									services. I also plan projects at the
+									detailed level: how the parts of a system
+									fit together, and how data passes between
+									them.
 								</p>
 								<p>
 									Agency work brings a wide range of problems.
