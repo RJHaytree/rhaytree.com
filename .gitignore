@@ -15,3 +15,6 @@ dist-ssr
 .vinxi
 __unconfig*
 todos.json
+
+# Unpublished drafts (may hold NDA-sensitive text): never committed.
+/drafts/
