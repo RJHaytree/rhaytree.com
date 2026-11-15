@@ -11,7 +11,9 @@ function TitleBlockRoot({
 	return (
 		<dl
 			className={cn(
-				'm-0 border border-rule-strong bg-sheet text-[0.9375rem]',
+				// One grid for all rows (rows use subgrid): the label column is as
+				// wide as the longest label, so values keep the rest of the width.
+				'm-0 grid grid-cols-[minmax(5rem,auto)_minmax(0,1fr)] gap-x-6 border border-rule-strong bg-sheet text-[0.9375rem]',
 				className,
 			)}
 		>
@@ -28,7 +30,7 @@ function TitleBlockRow({
 	children: React.ReactNode
 }) {
 	return (
-		<div className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-x-4 border-b border-rule px-4 py-2.5 last:border-b-0 sm:grid-cols-[7.5rem_minmax(0,1fr)]">
+		<div className="col-span-2 grid grid-cols-subgrid border-b border-rule px-4 py-2.5 last:border-b-0">
 			<dt className="font-mono text-sm leading-6 text-muted">{label}</dt>
 			<dd className="m-0 min-w-0 break-words">{children}</dd>
 		</div>

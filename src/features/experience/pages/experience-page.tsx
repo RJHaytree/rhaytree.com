@@ -15,8 +15,10 @@ export function ExperiencePage({ experience }: { experience: Experience }) {
 				</Page.Lead>
 			</Page.Header>
 
-			<div className="mt-14 space-y-20">
-				<Section.Root>
+			{/* Wide screens: the timeline on the left, the skills summary in a
+			    sticky column beside it, split by a hairline as on the home sheet. */}
+			<div className="mt-14 space-y-20 xl:grid xl:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] xl:items-start xl:space-y-0">
+				<Section.Root className="xl:pr-14">
 					<Section.Title>Roles</Section.Title>
 					<Section.Body>
 						{experience.roles.length > 0 ? (
@@ -29,7 +31,7 @@ export function ExperiencePage({ experience }: { experience: Experience }) {
 					</Section.Body>
 				</Section.Root>
 
-				<Section.Root>
+				<Section.Root className="xl:sticky xl:top-8 xl:border-l xl:border-rule xl:pl-14">
 					<Section.Title>Skills</Section.Title>
 					<Section.Body>
 						{experience.skillGroups.length > 0 ? (

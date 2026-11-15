@@ -1,3 +1,4 @@
+import { EmailContact } from '../ui/email-contact'
 import { Anchor } from '../ui/text-link'
 import { TitleBlock } from '../ui/title-block'
 import { useCurrentSheet, useTitleBlockInPage } from './use-current-sheet'
@@ -23,9 +24,7 @@ export function SiteFooter() {
 				</TitleBlock.Row>
 				<TitleBlock.Row label="Author">Ryan Haytree</TitleBlock.Row>
 				<TitleBlock.Row label="Email">
-					<Anchor href="mailto:rjhaytree@gmail.com">
-						rjhaytree@gmail.com
-					</Anchor>
+					<EmailContact />
 				</TitleBlock.Row>
 				<TitleBlock.Row label="GitHub">
 					<Anchor href="https://github.com/RJHaytree">
@@ -36,6 +35,12 @@ export function SiteFooter() {
 					<Anchor href="https://www.linkedin.com/in/ryan-haytree-59a645168/">
 						linkedin.com/in/ryan-haytree
 					</Anchor>
+				</TitleBlock.Row>
+				<TitleBlock.Row label="Based">
+					United Kingdom (GMT/BST)
+				</TitleBlock.Row>
+				<TitleBlock.Row label="Talk about">
+					Cloud infrastructure, data ingestion, teaching computing
 				</TitleBlock.Row>
 				<TitleBlock.Row label="Edition">
 					<span className="tabular-nums">2026</span>

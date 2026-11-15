@@ -6,10 +6,10 @@ import { caseStudyFixtures } from './case-studies.fixtures'
 // Real case studies go here once written and cleared under NDA.
 const published: Array<z.input<typeof caseStudySchema>> = []
 
-// Fixtures show on the dev server and in review builds (`--mode review`).
-// Both values are constants at build time, so a normal production build
-// only ever sees `published` and tree-shakes the fixtures away.
-const includeFixtures = import.meta.env.DEV || import.meta.env.MODE === 'review'
+// Fixtures show on the dev server only, for building case study pages; no
+// deployed build (review or production) includes them, and the constant
+// lets the build tree-shake them away.
+const includeFixtures = import.meta.env.DEV
 
 const caseStudies: Array<CaseStudy> = z
 	.array(caseStudySchema)

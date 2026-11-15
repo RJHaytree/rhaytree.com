@@ -99,7 +99,7 @@ const published: z.input<typeof experienceSchema> = {
 			start: '2021-11',
 			end: '2023-03',
 			summary:
-				'Planned and delivered lecturing sessions for Level 2, 3 and 4 students, with a primary focus on Level 3 Cyber Security (equivalent to three A levels), covering cyber security, enterprise computing and big data analytics.',
+				'Planned and delivered lecturing sessions from Level 2 to Level 6. At Levels 2 to 4 the primary focus was Level 3 Cyber Security (equivalent to three A levels), covering cyber security, enterprise computing and big data analytics; at Levels 5 and 6 the focus was software development.',
 			highlights: [
 				'Produced teaching materials for Level 3 and Level 6 subjects, including ReactJS development, Node.js development and Azure deployment.',
 				'Ensured assignments were completed and assessed within set time frames.',
@@ -118,10 +118,10 @@ const published: z.input<typeof experienceSchema> = {
 	skillGroups: [],
 }
 
-// Sample roles only fill in while no real ones exist, on the dev server and
-// in review builds (`--mode review`). Both values are constants at build
-// time, so a normal production build tree-shakes the fixtures away.
-const includeFixtures = import.meta.env.DEV || import.meta.env.MODE === 'review'
+// Sample roles only fill in on the dev server while no real ones exist; no
+// deployed build includes them, and the constant lets the build tree-shake
+// them away.
+const includeFixtures = import.meta.env.DEV
 
 /**
  * Where each skill sits in the Skills summary, in display order. The summary
@@ -156,15 +156,28 @@ const skillAreas: Array<{ area: string; skills: Array<string> }> = [
 	},
 	{
 		area: 'Cloud and data',
-		skills: ['AWS', 'Microsoft Azure', 'Terraform', 'MySQL'],
+		skills: [
+			'AWS',
+			'Microsoft Azure',
+			'Terraform',
+			'MySQL',
+			'PostgreSQL',
+			'NoSQL',
+		],
 	},
 	{ area: 'Security', skills: ['Cyber security'] },
 ]
 
+/** Skills held but not yet tagged on a particular role. */
+const additionalSkills = ['PostgreSQL', 'NoSQL']
+
 function summariseSkills(
 	roles: Experience['roles'],
 ): Experience['skillGroups'] {
-	const used = new Set(roles.flatMap((role) => role.skills))
+	const used = new Set([
+		...roles.flatMap((role) => role.skills),
+		...additionalSkills,
+	])
 	const placed = new Set(skillAreas.flatMap((group) => group.skills))
 	const groups = skillAreas.map((group) => ({
 		area: group.area,

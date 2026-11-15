@@ -1,5 +1,3 @@
-import { TextLink } from '#/components/ui/text-link'
-
 /**
  * A small system-design sketch for the identity column: ingest, model (the
  * focal step), store and serve, each tied to a data lane beneath them.
@@ -133,10 +131,7 @@ export function SystemSketch() {
 				))}
 			</svg>
 			<figcaption className="mt-1 font-mono text-xs text-muted">
-				Ingest, model, store, serve.{' '}
-				<TextLink to="/work" hash="example">
-					See it run
-				</TextLink>
+				Ingest, model, store, serve.
 			</figcaption>
 		</figure>
 	)

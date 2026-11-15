@@ -30,7 +30,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			{
 				name: 'description',
 				content:
-					'Ryan Haytree, platform and systems engineer: cloud architecture, internal developer tooling and infrastructure.',
+					'Ryan Haytree, senior lead engineer: cloud infrastructure on AWS and Azure, data ingestion and system design.',
 			},
 			// Link previews (LinkedIn, Slack, iMessage and others).
 			{ property: 'og:type', content: 'website' },
@@ -39,7 +39,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			{
 				property: 'og:description',
 				content:
-					'Platform and systems engineer: data integration, cloud architecture and platform tooling.',
+					'Senior lead engineer, cloud infrastructure: AWS, Azure and Terraform, data ingestion and system design.',
 			},
 			{ property: 'og:image', content: 'https://rhaytree.com/og.png' },
 			{ property: 'og:image:width', content: '1200' },
@@ -47,7 +47,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			{
 				property: 'og:image:alt',
 				content:
-					'Ryan Haytree, platform and systems engineer, set as an engineering drawing sheet.',
+					'Ryan Haytree, senior lead engineer in cloud infrastructure, set as an engineering drawing sheet.',
 			},
 			{ name: 'twitter:card', content: 'summary_large_image' },
 			// Browser chrome follows the default (dark) sheet.

@@ -1,11 +1,10 @@
 import { Page } from '#/components/layout/page'
 import { DimensionLine } from '#/components/ui/dimension-line'
+import { EmailContact } from '#/components/ui/email-contact'
 import { Section } from '#/components/ui/section'
 import { SectionNav } from '#/components/ui/section-nav'
 import { Anchor, TextLink } from '#/components/ui/text-link'
 import { TitleBlock } from '#/components/ui/title-block'
-import { CaseStudyList } from '#/features/case-studies/components/case-study-list'
-import type { CaseStudySummary } from '#/features/case-studies/types/case-study'
 import { RoleList } from '#/features/experience/components/role-list'
 import type { Experience } from '#/features/experience/types/experience'
 
@@ -17,31 +16,24 @@ const sections = [
 	{ id: 'about', label: 'About' },
 	{ id: 'practice', label: 'Practice' },
 	{ id: 'experience', label: 'Experience' },
-	{ id: 'work', label: 'Work' },
 ]
 
 /**
  * Home: a fixed identity column on the left (on lg) with in-page navigation
  * that follows the reader, and the content scrolling on the right.
  */
-export function HomePage({
-	featured,
-	experience,
-}: {
-	featured: Array<CaseStudySummary>
-	experience: Experience
-}) {
+export function HomePage({ experience }: { experience: Experience }) {
 	return (
 		<Page.Root className="lg:pt-0">
 			<div className="lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-				<div className="lg:sticky lg:top-0 lg:flex lg:h-[calc(100svh-5.5rem)] lg:flex-col lg:justify-between lg:py-10 lg:pr-14">
+				<div className="lg:sticky lg:top-0 lg:flex lg:h-[calc(100svh-5.5rem)] lg:flex-col lg:justify-between lg:gap-5 lg:py-10 lg:pr-14">
 					<div>
 						<DimensionLine className="mb-6 max-w-[26rem]" />
 						<h1 className="letter-in text-[clamp(2.5rem,9vw,5.5rem)] leading-[0.95] font-semibold tracking-[-0.035em] whitespace-nowrap text-bright [font-stretch:115%] lg:text-[clamp(2.5rem,4.1vw,4rem)]">
 							Ryan Haytree
 						</h1>
 						<p className="mt-5 font-display text-xl font-semibold text-ink [font-stretch:112%]">
-							Platform and systems engineer
+							Senior lead engineer, cloud infrastructure
 						</p>
 						<p className="mt-4 max-w-[36ch] text-lg leading-snug text-muted">
 							I design how systems fit together, and build the
@@ -64,9 +56,7 @@ export function HomePage({
 						<h2 className="sr-only">Title block and contact</h2>
 						<TitleBlock.Root className="w-full max-w-[26rem]">
 							<TitleBlock.Row label="Email">
-								<Anchor href="mailto:rjhaytree@gmail.com">
-									rjhaytree@gmail.com
-								</Anchor>
+								<EmailContact />
 							</TitleBlock.Row>
 							<TitleBlock.Row label="GitHub">
 								<Anchor href="https://github.com/RJHaytree">
@@ -120,14 +110,18 @@ export function HomePage({
 							</div>
 							<TitleBlock.Root className="max-w-[32rem]">
 								<TitleBlock.Row label="Discipline">
-									Platform and systems engineering
+									Cloud infrastructure and system design
 								</TitleBlock.Row>
 								<TitleBlock.Row label="Focus">
-									Data integration, cloud architecture,
-									platform tooling
+									Infrastructure as code, data ingestion,
+									system planning
 								</TitleBlock.Row>
 								<TitleBlock.Row label="Based">
-									United Kingdom
+									United Kingdom (GMT/BST)
+								</TitleBlock.Row>
+								<TitleBlock.Row label="Talk about">
+									Cloud infrastructure, data ingestion,
+									teaching computing
 								</TitleBlock.Row>
 							</TitleBlock.Root>
 						</Section.Body>
@@ -155,30 +149,6 @@ export function HomePage({
 							) : (
 								<p className="text-muted">
 									Role history is being added.
-								</p>
-							)}
-						</Section.Body>
-					</Section.Root>
-
-					<Section.Root id="work">
-						<Section.Title>Selected work</Section.Title>
-						<Section.Body>
-							{featured.length > 0 ? (
-								<>
-									<CaseStudyList studies={featured} />
-									<p className="mt-6">
-										<TextLink to="/work">
-											All case studies
-										</TextLink>
-									</p>
-								</>
-							) : (
-								<p className="text-muted">
-									Case studies are being written up.{' '}
-									<TextLink to="/experience">
-										See my experience
-									</TextLink>{' '}
-									in the meantime.
 								</p>
 							)}
 						</Section.Body>
