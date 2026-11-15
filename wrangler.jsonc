@@ -3,8 +3,12 @@
 	"name": "rhaytree-personal",
 	"compatibility_date": "2026-11-01",
 	"compatibility_flags": ["nodejs_compat"],
-	"main": "@tanstack/react-start/server-entry",
-	// Serve the site on the apex domain; Cloudflare creates the DNS record.
-	"routes": [{ "pattern": "rhaytree.com", "custom_domain": true }],
+	// Custom entry (src/server.ts): redirects www to the bare domain.
+	"main": "src/server.ts",
+	// Cloudflare creates the DNS records and certificates for both.
+	"routes": [
+		{ "pattern": "rhaytree.com", "custom_domain": true },
+		{ "pattern": "www.rhaytree.com", "custom_domain": true }
+	],
 	"observability": { "enabled": true }
 }

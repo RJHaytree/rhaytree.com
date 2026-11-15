@@ -32,12 +32,36 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				content:
 					'Ryan Haytree, platform and systems engineer: cloud architecture, internal developer tooling and infrastructure.',
 			},
+			// Link previews (LinkedIn, Slack, iMessage and others).
+			{ property: 'og:type', content: 'website' },
+			{ property: 'og:site_name', content: 'Ryan Haytree' },
+			{ property: 'og:title', content: 'Ryan Haytree' },
+			{
+				property: 'og:description',
+				content:
+					'Platform and systems engineer: data integration, cloud architecture and platform tooling.',
+			},
+			{ property: 'og:image', content: 'https://rhaytree.com/og.png' },
+			{ property: 'og:image:width', content: '1200' },
+			{ property: 'og:image:height', content: '630' },
+			{
+				property: 'og:image:alt',
+				content:
+					'Ryan Haytree, platform and systems engineer, set as an engineering drawing sheet.',
+			},
+			{ name: 'twitter:card', content: 'summary_large_image' },
+			// Browser chrome follows the default (dark) sheet.
+			{ name: 'theme-color', content: '#0c0f14' },
 			// Review builds carry sample content: keep them out of search.
 			...(import.meta.env.MODE === 'review'
 				? [{ name: 'robots', content: 'noindex, nofollow' }]
 				: []),
 		],
-		links: [{ rel: 'stylesheet', href: appCss }],
+		links: [
+			{ rel: 'stylesheet', href: appCss },
+			{ rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+			{ rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+		],
 	}),
 	shellComponent: RootDocument,
 	component: RootLayout,

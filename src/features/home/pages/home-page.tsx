@@ -86,9 +86,35 @@ export function HomePage({
 					<Section.Root id="about">
 						<Section.Title>About</Section.Title>
 						<Section.Body className="space-y-8">
-							<p className="max-w-[60ch] text-lg text-muted">
-								[Placeholder: short about section.]
-							</p>
+							<div className="max-w-[60ch] space-y-4 text-lg text-muted">
+								<p>
+									I'm a senior lead engineer at Scorchsoft, a
+									software agency, where I build low-latency,
+									low-downtime cloud systems and lead the
+									developers who work on them. Most of my role
+									is now infrastructure: designing and running
+									these systems on AWS and Azure, defined in
+									Terraform and built on cloud-native
+									services.
+								</p>
+								<p>
+									Agency work brings a wide range of problems.
+									The hardest, and the ones I enjoy most, are
+									data ingestion: taking in data from many
+									sources over different protocols, from HTTP
+									and MQTT to IBM MQ and email, and shaping it
+									into one consistent model the rest of a
+									system can rely on.
+								</p>
+								<p>
+									I started out lecturing in computing,
+									teaching cyber security, web development and
+									cloud deployment. That still shapes how I
+									work: I care about systems that can be
+									explained, documented and handed on, not
+									just systems that run.
+								</p>
+							</div>
 							<TitleBlock.Root className="max-w-[32rem]">
 								<TitleBlock.Row label="Discipline">
 									Platform and systems engineering
