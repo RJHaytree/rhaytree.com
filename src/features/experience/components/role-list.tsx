@@ -23,7 +23,7 @@ function formatYearMonth(value: string) {
 	return `${months[Number(month) - 1]} ${year}`
 }
 
-function DateRange({ start, end }: { start: string; end?: string }) {
+export function DateRange({ start, end }: { start: string; end?: string }) {
 	return (
 		<>
 			<time dateTime={start}>{formatYearMonth(start)}</time>
@@ -139,6 +139,7 @@ export function RoleList({ roles }: { roles: Array<Role> }) {
 										) : null}
 										<TagList
 											tags={role.skills}
+											limit={5}
 											label={`Skills used as ${role.title}`}
 											className="mt-4"
 										/>

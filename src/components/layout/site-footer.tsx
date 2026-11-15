@@ -22,7 +22,6 @@ export function SiteFooter() {
 					<span className="tabular-nums">{sheet.number}</span>{' '}
 					<span className="text-muted">{sheet.title}</span>
 				</TitleBlock.Row>
-				<TitleBlock.Row label="Author">Ryan Haytree</TitleBlock.Row>
 				<TitleBlock.Row label="Email">
 					<EmailContact />
 				</TitleBlock.Row>
@@ -35,12 +34,6 @@ export function SiteFooter() {
 					<Anchor href="https://www.linkedin.com/in/ryan-haytree-59a645168/">
 						linkedin.com/in/ryan-haytree
 					</Anchor>
-				</TitleBlock.Row>
-				<TitleBlock.Row label="Based">
-					United Kingdom (GMT/BST)
-				</TitleBlock.Row>
-				<TitleBlock.Row label="Talk about">
-					Cloud infrastructure, data ingestion, teaching computing
 				</TitleBlock.Row>
 				<TitleBlock.Row label="Edition">
 					<span className="tabular-nums">2026</span>

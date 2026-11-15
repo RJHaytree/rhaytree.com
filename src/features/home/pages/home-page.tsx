@@ -5,7 +5,7 @@ import { Section } from '#/components/ui/section'
 import { SectionNav } from '#/components/ui/section-nav'
 import { Anchor, TextLink } from '#/components/ui/text-link'
 import { TitleBlock } from '#/components/ui/title-block'
-import { RoleList } from '#/features/experience/components/role-list'
+import { RoleSummary } from '#/features/experience/components/role-summary'
 import type { Experience } from '#/features/experience/types/experience'
 
 import { practiceAreas } from '../api/practice-areas'
@@ -76,7 +76,7 @@ export function HomePage({ experience }: { experience: Experience }) {
 					<Section.Root id="about">
 						<Section.Title>About</Section.Title>
 						<Section.Body className="space-y-8">
-							<div className="max-w-[60ch] space-y-4 text-lg text-muted">
+							<div className="max-w-[50ch] space-y-4 text-lg text-muted">
 								<p>
 									I'm a senior lead engineer at Scorchsoft, a
 									software agency, where I build low-latency,
@@ -92,12 +92,9 @@ export function HomePage({ experience }: { experience: Experience }) {
 								</p>
 								<p>
 									Agency work brings a wide range of problems.
-									The hardest, and the ones I enjoy most, are
-									data ingestion: taking in data from many
-									sources over different protocols, from HTTP
-									and MQTT to IBM MQ and email, and shaping it
-									into one consistent model the rest of a
-									system can rely on.
+									The part I enjoy most is designing complex,
+									multi-service systems that join together
+									into one reliable, high-quality product.
 								</p>
 								<p>
 									I started out lecturing in computing,
@@ -109,18 +106,11 @@ export function HomePage({ experience }: { experience: Experience }) {
 								</p>
 							</div>
 							<TitleBlock.Root className="max-w-[32rem]">
-								<TitleBlock.Row label="Discipline">
-									Cloud infrastructure and system design
-								</TitleBlock.Row>
-								<TitleBlock.Row label="Focus">
-									Infrastructure as code, data ingestion,
-									system planning
-								</TitleBlock.Row>
 								<TitleBlock.Row label="Based">
 									United Kingdom (GMT/BST)
 								</TitleBlock.Row>
 								<TitleBlock.Row label="Talk about">
-									Cloud infrastructure, data ingestion,
+									Cloud infrastructure, system design,
 									teaching computing
 								</TitleBlock.Row>
 							</TitleBlock.Root>
@@ -139,11 +129,15 @@ export function HomePage({ experience }: { experience: Experience }) {
 						<Section.Body>
 							{experience.roles.length > 0 ? (
 								<>
-									<RoleList roles={experience.roles} />
+									<RoleSummary roles={experience.roles} />
 									<p className="mt-6">
 										<TextLink to="/experience">
 											Full experience and skills
 										</TextLink>
+									</p>
+									<p className="mt-3 text-muted">
+										Case studies are being written up and
+										cleared for publication.
 									</p>
 								</>
 							) : (

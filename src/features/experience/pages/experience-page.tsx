@@ -11,7 +11,9 @@ export function ExperiencePage({ experience }: { experience: Experience }) {
 			<Page.Header>
 				<Page.Title>Experience</Page.Title>
 				<Page.Lead>
-					Roles held and the skills used in them, most recent first.
+					Nearly four years at Scorchsoft, from junior developer to
+					senior lead engineer, after starting out lecturing in
+					computing.
 				</Page.Lead>
 			</Page.Header>
 

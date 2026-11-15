@@ -177,14 +177,18 @@
 		text-wrap: balance;
 	}
 
-	p {
+	/* Prose, list items and schedule values all avoid a lone last word. */
+	p,
+	li,
+	dd {
 		text-wrap: pretty;
 	}
 }
 
 /*
- * Home system sketch: inputs travel from the sources to the model, records
- * from the model to the end. Hidden entirely under reduced motion.
+ * Home system sketch: inputs travel from external data to the services,
+ * records from the services to the product. Each element carries its own
+ * offset-path inline. Hidden entirely under reduced motion.
  */
 .sketch-input,
 .sketch-record {
@@ -192,13 +196,8 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	.sketch-input {
-		offset-path: path("M36 76 H188");
-		animation: sketch-travel 4.2s linear infinite;
-	}
-
+	.sketch-input,
 	.sketch-record {
-		offset-path: path("M188 76 H412");
 		animation: sketch-travel 4.2s linear infinite;
 	}
 }
@@ -329,6 +328,33 @@ html.theme-switching::view-transition-new(root) {
 
 html.theme-switching::view-transition-new(root) {
 	z-index: 1;
+}
+
+/*
+ * Arriving at the title block from the register's "Contact": a 2px signal
+ * outline marks it as the current target, then fades. Under reduced motion
+ * the outline simply stays while #contact is the target.
+ */
+#contact:target dl,
+#contact.is-arriving dl {
+	outline: 2px solid var(--color-signal);
+	outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	#contact:target dl,
+	#contact.is-arriving dl {
+		animation: contact-arrive 1.6s var(--ease-draft) 0.2s both;
+	}
+}
+
+@keyframes contact-arrive {
+	from {
+		outline-color: var(--color-signal);
+	}
+	to {
+		outline-color: transparent;
+	}
 }
 
 /* The faint 48px drafting grid on every sheet. */

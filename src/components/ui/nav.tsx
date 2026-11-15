@@ -11,7 +11,7 @@ function NavRoot({
 }) {
 	return (
 		<nav aria-label={label}>
-			<ul className="m-0 grid list-none grid-cols-2 gap-x-6 gap-y-1 p-0 sm:flex sm:flex-wrap">
+			<ul className="m-0 flex list-none flex-wrap gap-x-5 gap-y-1 p-0 sm:gap-x-6">
 				{children}
 			</ul>
 		</nav>

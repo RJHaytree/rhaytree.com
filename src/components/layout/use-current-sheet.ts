@@ -5,7 +5,7 @@ export interface Sheet {
 	title: string
 }
 
-const notFoundSheet: Sheet = { number: 'RH-00', title: 'Sheet not found' }
+const notFoundSheet: Sheet = { number: 'RH-00', title: 'Page not found' }
 
 function isSheet(value: unknown): value is Sheet {
 	return (

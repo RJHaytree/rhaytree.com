@@ -41,6 +41,13 @@ typography:
     lineHeight: 1.25
     letterSpacing: "-0.02em"
     fontVariation: "\"wdth\" 112"
+  title-compact:
+    fontFamily: "Archivo Variable, Helvetica Neue, Arial, sans-serif"
+    fontSize: "1.75rem"
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: "-0.02em"
+    fontVariation: "\"wdth\" 112"
   item:
     fontFamily: "Geist Variable, Helvetica Neue, Arial, sans-serif"
     fontSize: "1.125rem"
@@ -56,12 +63,22 @@ typography:
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
+  schedule:
+    fontFamily: "Geist Variable, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 400
+    lineHeight: 1.6
   label:
     fontFamily: "Geist Mono Variable, ui-monospace, SFMono-Regular, Menlo, monospace"
     fontSize: "0.875rem"
     fontWeight: 400
     lineHeight: 1.5
     fontFeature: "\"tnum\" 1"
+  micro:
+    fontFamily: "Geist Mono Variable, ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontSize: "0.75rem"
+    fontWeight: 400
+    lineHeight: 1.5
 rounded:
   none: "0px"
 spacing:
@@ -114,9 +131,9 @@ components:
     typography: "{typography.label}"
   tag:
     textColor: "{colors.muted}"
-    typography: "{typography.label}"
+    typography: "{typography.micro}"
     rounded: "{rounded.none}"
-    padding: "2px 10px"
+    padding: "2px 8px"
 ---
 
 # Design System: Ryan Haytree
@@ -186,11 +203,13 @@ Drafting paper: `html.light` flips every scale so each step keeps its job (1-3 b
 ### Hierarchy
 - **Display** (Archivo 600, clamp(2.5rem, 9vw, 5.5rem), 0.95, wdth 115): the name on the home sheet only, one line, lettered in from narrow on load. Narrows to clamp(2.5rem, 4.1vw, 4rem) in the lg identity column.
 - **Headline** (Archivo 600, 2.25rem to 3rem, 1.05, wdth 112): each sheet's single h1.
-- **Title** (Archivo 600, 1.75rem to 2rem, 1.25, wdth 112): section titles. The home sheet's professional title under the name uses Archivo 600 at 1.25rem, wdth 112, in ink.
+- **Title** (Archivo 600, 2rem from sm, 1.75rem below as title-compact, 1.25, wdth 112): section titles. The home sheet's professional title under the name uses Archivo 600 at 1.25rem, wdth 112, in ink.
 - **Item** (Geist 600, 1.125rem): titles of entries in a schedule: practice areas, roles, case-study links (500 there).
 - **Lead** (Geist 400, 1.125rem to 1.25rem, relaxed): positioning and page leads, in muted graphite.
-- **Body** (Geist 400, 1.0625rem, 1.6): prose, capped at 60 to 65ch, `text-wrap: pretty`.
-- **Label** (Geist Mono 400, 0.875rem, tabular): title-block labels, sheet and case references, dates, register and section numbers, tags, notes titles (500, bright), and diagram text (13 to 16 viewBox units, larger below 640px).
+- **Body** (Geist 400, 1.0625rem, 1.6): prose, capped at 60 to 65ch (the About copy at 1.125rem is capped at 50ch, about 65 characters a line), `text-wrap: pretty` on paragraphs, list items and schedule values.
+- **Schedule** (Geist 400, 0.9375rem, 1.6): values in a title block.
+- **Micro** (Geist Mono 400, 0.75rem): skill tags, the Copy control and small notes.
+- **Label** (Geist Mono 400, 0.875rem, tabular): title-block labels, sheet and case references, dates, register and section numbers, notes titles (500, bright), and diagram text (13 to 16 viewBox units, larger below 640px).
 
 ### Named Rules
 **The One Job Per Family Rule.** h1 to h3 at section level and above are Archivo, set wide (112%) by the base styles. Reading text is Geist. Mono is only for references, dates, numbers, labels, tags and diagram text, never for prose or headings.
@@ -240,7 +259,7 @@ The universal content pattern: hairline-divided rows, a number or margin column 
 A schedule of case studies: mono tabular reference in the margin, a sky title link and muted summary beside it. On row hover or focus the reference brightens and a 2px signal leader draws across the gutter toward the title.
 
 ### Tags
-Square chips with a hairline border, Geist Mono 0.875rem muted text, 2px by 10px padding, used for a case study's stack. Static, not interactive.
+Square chips with a hairline strong-rule border, Geist Mono 0.75rem (micro) muted text, 2px by 8px padding: a role's skills on the Experience sheet. Static, not interactive. A role shows its first five; the rest sit behind a sky "+N more" text control (`aria-expanded`) that reveals them in place.
 
 ### Dimension Line
 A decorative horizontal strong-rule line with end ticks that measures the width of the heading block it sits above. Draws in from the left on load.

@@ -45,7 +45,9 @@ export function CopyButton({
 			onClick={copy}
 			aria-label={copied ? `Copied ${label}` : `Copy ${label}`}
 			className={cn(
-				'cursor-pointer border border-rule px-1.5 font-mono text-xs leading-5 text-muted transition-colors duration-150 hover:border-rule-strong hover:text-bright',
+				// The visible chip stays small; the after: layer widens the hit area
+				// to about 44px tall for touch.
+				'relative cursor-pointer border border-rule px-1.5 font-mono text-xs leading-5 text-muted transition-colors duration-150 after:absolute after:-inset-x-2 after:-inset-y-3 hover:border-rule-strong hover:text-bright',
 				copied && 'border-rule-strong text-bright',
 				className,
 			)}

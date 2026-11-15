@@ -5,14 +5,15 @@ export function NotFoundPage() {
 	return (
 		<Page.Root>
 			<Page.Header>
-				<Page.Title>Sheet not found</Page.Title>
+				<Page.Title>Page not found</Page.Title>
 				<Page.Lead>
-					No drawing exists at this address. It may have moved, or the
+					There's nothing at this address. It may have moved, or the
 					link may have a typo.
 				</Page.Lead>
 			</Page.Header>
-			<p className="mt-8">
-				<TextLink to="/">Go to the home sheet</TextLink>
+			<p className="mt-8 flex flex-wrap gap-x-8 gap-y-2">
+				<TextLink to="/">Go to the homepage</TextLink>
+				<TextLink to="/experience">See my experience</TextLink>
 			</p>
 		</Page.Root>
 	)

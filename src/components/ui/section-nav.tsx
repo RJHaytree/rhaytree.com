@@ -7,32 +7,61 @@ interface SectionLink {
 	label: string
 }
 
+/** How far down the viewport a section's top must pass to become current. */
+const readingLine = 0.35
+
 /**
- * Tracks which of the given sections sits in the reading band (roughly the
- * upper third of the viewport). Falls back to the first section.
+ * Tracks the current section: the last one whose top has passed the reading
+ * line. At the foot of the page the last section is current even when it is
+ * too short for its top to reach the line. Falls back to the first section.
  */
 function useActiveSection(ids: Array<string>) {
 	const [active, setActive] = useState(ids[0])
 	// A primitive dependency, so a new array with the same ids doesn't
-	// re-subscribe the observer on every render.
+	// re-subscribe on every render.
 	const idKey = ids.join(' ')
 
 	useEffect(() => {
 		const sectionIds = idKey.split(' ')
-		const observer = new IntersectionObserver(
-			(entries) => {
-				for (const entry of entries) {
-					if (entry.isIntersecting) setActive(entry.target.id)
-				}
-			},
-			{ rootMargin: '-30% 0px -60% 0px' },
-		)
+		let frame = 0
 
-		for (const id of sectionIds) {
-			const element = document.getElementById(id)
-			if (element) observer.observe(element)
+		function update() {
+			frame = 0
+			const elements = sectionIds
+				.map((id) => document.getElementById(id))
+				.filter((element): element is HTMLElement => element !== null)
+			if (elements.length === 0) return
+
+			const atFoot =
+				window.scrollY + window.innerHeight >=
+				document.documentElement.scrollHeight - 2
+			if (atFoot) {
+				setActive(elements[elements.length - 1].id)
+				return
+			}
+
+			const line = window.innerHeight * readingLine
+			let current = elements[0].id
+			for (const element of elements) {
+				if (element.getBoundingClientRect().top <= line) {
+					current = element.id
+				}
+			}
+			setActive(current)
 		}
-		return () => observer.disconnect()
+
+		function schedule() {
+			if (!frame) frame = window.requestAnimationFrame(update)
+		}
+
+		update()
+		window.addEventListener('scroll', schedule, { passive: true })
+		window.addEventListener('resize', schedule)
+		return () => {
+			window.removeEventListener('scroll', schedule)
+			window.removeEventListener('resize', schedule)
+			if (frame) window.cancelAnimationFrame(frame)
+		}
 	}, [idKey])
 
 	return active

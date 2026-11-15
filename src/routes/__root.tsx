@@ -30,7 +30,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			{
 				name: 'description',
 				content:
-					'Ryan Haytree, senior lead engineer: cloud infrastructure on AWS and Azure, data ingestion and system design.',
+					'Ryan Haytree, senior lead engineer: cloud infrastructure on AWS and Azure, multi-service system design and data handling.',
 			},
 			// Link previews (LinkedIn, Slack, iMessage and others).
 			{ property: 'og:type', content: 'website' },
@@ -39,7 +39,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			{
 				property: 'og:description',
 				content:
-					'Senior lead engineer, cloud infrastructure: AWS, Azure and Terraform, data ingestion and system design.',
+					'Senior lead engineer, cloud infrastructure: AWS, Azure and Terraform, multi-service system design and data handling.',
 			},
 			{ property: 'og:image', content: 'https://rhaytree.com/og.png' },
 			{ property: 'og:image:width', content: '1200' },

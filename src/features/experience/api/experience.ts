@@ -13,17 +13,17 @@ const published: z.input<typeof experienceSchema> = {
 			arrangement: 'Remote',
 			start: '2026-09',
 			summary:
-				'An evolution of the lead role: helping drive technical decision-making across the organisation, and identifying greater opportunities for coordination and technical excellence.',
+				'Drives technical decision-making across the organisation, and identifies greater opportunities for coordination and technical excellence.',
 			skills: [
-				'Technology leadership',
 				'Systems design',
+				'Terraform',
+				'AWS',
+				'Microsoft Azure',
+				'Technology leadership',
 				'TypeScript',
 				'React Native',
 				'Laravel',
 				'PHP',
-				'Terraform',
-				'Microsoft Azure',
-				'AWS',
 				'Cyber security',
 			],
 		},
@@ -35,22 +35,22 @@ const published: z.input<typeof experienceSchema> = {
 			start: '2025-03',
 			end: '2026-09',
 			summary:
-				'Oversaw the successful completion and maintenance of projects for both clients and internal use cases. Provided guidance for developers, and delivered high-quality, high-availability, cloud-based solutions.',
+				'Oversaw the successful completion and maintenance of projects for both clients and internal use cases. Provided guidance for developers, and delivered reliable, high-availability cloud solutions.',
 			skills: [
 				'Project management',
-				'Time management',
-				'Quality assurance',
-				'Software development',
 				'Laravel',
+				'TypeScript',
+				'React',
+				'React Native',
 				'Filament',
 				'PHP',
 				'MySQL',
-				'TypeScript',
 				'JavaScript',
-				'React',
-				'React Native',
 				'Swift',
 				'Cyber security',
+				'Quality assurance',
+				'Time management',
+				'Software development',
 			],
 		},
 		{
@@ -61,7 +61,7 @@ const published: z.input<typeof experienceSchema> = {
 			start: '2024-03',
 			end: '2025-03',
 			summary:
-				'Developed and maintained high-quality web and mobile applications, from Laravel and Filament back ends to React and React Native front ends, taking on a growing share of each project.',
+				'Developed and maintained web and mobile applications, from Laravel and Filament back ends to React and React Native front ends, taking on a growing share of each project.',
 			skills: [
 				'TypeScript',
 				'React',
@@ -80,15 +80,15 @@ const published: z.input<typeof experienceSchema> = {
 			start: '2023-03',
 			end: '2024-03',
 			summary:
-				'Making use of Laravel, React and React Native to build and support a plethora of development projects.',
+				'Built and supported a wide range of client projects in Laravel, React and React Native.',
 			skills: [
-				'Software development',
-				'PHP',
 				'Laravel',
-				'MySQL',
-				'JavaScript',
+				'PHP',
 				'React',
 				'React Native',
+				'MySQL',
+				'JavaScript',
+				'Software development',
 			],
 		},
 		{
@@ -108,10 +108,10 @@ const published: z.input<typeof experienceSchema> = {
 			],
 			skills: [
 				'Lesson planning',
-				'Time management',
-				'Quality assurance',
-				'Software development',
 				'Cyber security',
+				'Software development',
+				'Quality assurance',
+				'Time management',
 			],
 		},
 	],
@@ -155,7 +155,7 @@ const skillAreas: Array<{ area: string; skills: Array<string> }> = [
 		],
 	},
 	{
-		area: 'Cloud and data',
+		area: 'Cloud, data and security',
 		skills: [
 			'AWS',
 			'Microsoft Azure',
@@ -163,9 +163,9 @@ const skillAreas: Array<{ area: string; skills: Array<string> }> = [
 			'MySQL',
 			'PostgreSQL',
 			'NoSQL',
+			'Cyber security',
 		],
 	},
-	{ area: 'Security', skills: ['Cyber security'] },
 ]
 
 /** Skills held but not yet tagged on a particular role. */

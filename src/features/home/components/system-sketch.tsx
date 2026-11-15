@@ -1,22 +1,33 @@
 /**
- * A small system-design sketch for the identity column: ingest, model (the
- * focal step), store and serve, each tied to a data lane beneath them.
- * Messages ride the lane: varied source shapes up to the model, uniform
- * records after it. The motion is hidden under reduced motion.
+ * A small system-design sketch for the identity column: external data feeds
+ * several services, which join into one product. Varied shapes travel from
+ * the outside to the services; uniform records travel on to the product.
+ * The product is the focal part, marked by a heavier, brighter stroke rather
+ * than colour. All motion is hidden under reduced motion.
  */
 
-const boxes = [
-	{ x: 60, label: 'Ingest' },
-	{ x: 152, label: 'Model', focal: true },
-	{ x: 244, label: 'Store' },
-	{ x: 336, label: 'Serve' },
+const services = [
+	{ y: 8, label: 'Service A' },
+	{ y: 40, label: 'Service B' },
+	{ y: 72, label: 'Service C' },
 ] as const
 
 const inputs = [
-	{ colour: 'sky', shape: 'circle', delay: '0s' },
-	{ colour: 'orange', shape: 'triangle', delay: '-1.4s' },
-	{ colour: 'azure', shape: 'diamond', delay: '-2.8s' },
+	{ colour: 'sky', shape: 'circle', delay: '0s', service: 0 },
+	{ colour: 'orange', shape: 'triangle', delay: '-1.4s', service: 1 },
+	{ colour: 'azure', shape: 'diamond', delay: '-2.8s', service: 2 },
 ] as const
+
+/** Centre line of each service box. */
+const serviceMid = (index: number) => services[index].y + 12
+
+/** External data (right edge, x 108) through the left bus to a service. */
+const inPath = (index: number) =>
+	`path("M108 52 H136 V${serviceMid(index)} H164")`
+
+/** A service (right edge, x 244) through the right bus to the product. */
+const outPath = (index: number) =>
+	`path("M244 ${serviceMid(index)} H284 V52 H316")`
 
 function InputShape({
 	shape,
@@ -30,86 +41,92 @@ function InputShape({
 	return <path d="M0 -5.5 L5.5 0 L0 5.5 L-5.5 0 Z" fill={fill} />
 }
 
+const label = {
+	fontSize: 12,
+	fontFamily: 'var(--font-mono)',
+	textAnchor: 'middle',
+} as const
+
 export function SystemSketch() {
 	return (
 		<figure className="m-0">
 			<svg
-				viewBox="0 0 420 100"
+				viewBox="0 0 420 104"
 				role="img"
-				aria-label="System sketch: data from many sources is ingested, shaped into one model, stored and served."
+				aria-label="System sketch: external data feeds three services, which join together into one product."
 				className="h-auto w-full"
 				fill="none"
 			>
-				{/* Sources: a small stack of different source shapes. */}
-				<circle cx={14} cy={66} r={5} fill="var(--color-sky-7)" />
-				<path d="M14 75 L19 84 H9 Z" fill="var(--color-orange-7)" />
+				{/* External data: outside the system, so a dashed boundary. */}
+				<rect
+					x={4}
+					y={36}
+					width={104}
+					height={32}
+					fill="var(--color-graphite-1)"
+					stroke="var(--color-graphite-6)"
+					strokeDasharray="4 3"
+				/>
+				<text x={56} y={56} fill="var(--color-graphite-9)" {...label}>
+					External data
+				</text>
+
+				{/* Wiring: a bus either side of the services. */}
 				<path
-					d="M28 66 H36 M28 80 H36 M36 66 V80 M36 76 H412"
+					d="M108 52 H136 M136 20 V84 M136 20 H164 M136 52 H164 M136 84 H164 M244 20 H284 M244 52 H284 M244 84 H284 M284 20 V84 M284 52 H316"
 					stroke="var(--color-graphite-6)"
 				/>
 
-				{boxes.map((box, index) => {
-					const focal = 'focal' in box && box.focal
-					const cx = box.x + 36
-					return (
-						<g key={box.label}>
-							{index > 0 ? (
-								<path
-									d={`M${box.x - 20} 32 H${box.x}`}
-									stroke="var(--color-graphite-6)"
-								/>
-							) : null}
-							<path
-								d={`M${cx} 48 V76`}
-								stroke={
-									focal
-										? 'var(--color-signal-7)'
-										: 'var(--color-graphite-6)'
-								}
-								strokeDasharray={focal ? undefined : '3 3'}
-							/>
-							<rect
-								x={box.x}
-								y={16}
-								width={72}
-								height={32}
-								fill={
-									focal
-										? 'var(--color-signal-2)'
-										: 'var(--color-graphite-2)'
-								}
-								stroke={
-									focal
-										? 'var(--color-signal-7)'
-										: 'var(--color-graphite-6)'
-								}
-								strokeWidth={focal ? 2 : 1}
-							/>
-							<text
-								x={cx}
-								y={37}
-								textAnchor="middle"
-								fontSize={12}
-								fontFamily="var(--font-mono)"
-								fontWeight={focal ? 600 : 400}
-								fill={
-									focal
-										? 'var(--color-signal-9)'
-										: 'var(--color-graphite-10)'
-								}
-							>
-								{box.label}
-							</text>
-						</g>
-					)
-				})}
+				{services.map((service) => (
+					<g key={service.label}>
+						<rect
+							x={164}
+							y={service.y}
+							width={80}
+							height={24}
+							fill="var(--color-graphite-2)"
+							stroke="var(--color-graphite-6)"
+						/>
+						<text
+							x={204}
+							y={service.y + 16}
+							fill="var(--color-graphite-10)"
+							{...label}
+						>
+							{service.label}
+						</text>
+					</g>
+				))}
 
-				{/* Messages on the lane: varied before the model, uniform after. */}
+				{/* The product: focal by weight and brightness. */}
+				<rect
+					x={316}
+					y={32}
+					width={100}
+					height={40}
+					fill="var(--color-graphite-2)"
+					stroke="var(--color-graphite-10)"
+					strokeWidth={2}
+				/>
+				<text
+					x={366}
+					y={56}
+					fill="var(--color-graphite-10)"
+					fontWeight={600}
+					{...label}
+				>
+					Product
+				</text>
+
+				{/* Moving parts: varied inputs in, uniform records out. */}
 				{inputs.map((input) => (
 					<g
 						key={input.shape}
 						className="sketch-input"
-						style={{ animationDelay: input.delay }}
+						style={{
+							offsetPath: inPath(input.service),
+							animationDelay: input.delay,
+						}}
 					>
 						<InputShape
 							shape={input.shape}
@@ -126,13 +143,13 @@ export function SystemSketch() {
 						width={12}
 						height={6}
 						fill="var(--color-graphite-10)"
-						style={{ animationDelay: input.delay }}
+						style={{
+							offsetPath: outPath(input.service),
+							animationDelay: `calc(${input.delay} - 2.1s)`,
+						}}
 					/>
 				))}
 			</svg>
-			<figcaption className="mt-1 font-mono text-xs text-muted">
-				Ingest, model, store, serve.
-			</figcaption>
 		</figure>
 	)
 }
